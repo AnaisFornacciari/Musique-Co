@@ -1,7 +1,9 @@
 <?php
                     /* Définition des routes*/
 $app->match('/', "ControleurStart::start"); //par défaut
-
-$app->match('/afficher/{id}', "ControleurAffichage::categorie($id)");
+$app->get('/ping', function() use ($app) {
+ return "pong";
+ });
+$app->get('/afficher/{id}', "ControleurAffichage::categorie($id)");
 
 ?>

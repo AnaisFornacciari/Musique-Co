@@ -17,6 +17,7 @@ Class ControleurStart
     
     public function start()
     {
+        $contenu = $this->pdo->getContenu(1);
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_texte.php';
         require_once __DIR__.'/../vues/v_pied.php';
@@ -38,9 +39,50 @@ Class ControleurAffichage
         require_once __DIR__.'/../vues/v_pied.php';
     }
 
-    public function categorie()
+    public function affichage(Request $request, Application $app)
     {
         $this->init();
+        $id = $request->get('id');
+        $menu = $this->pdo->getInfoMenu($id);
+        if(!$menu['sousMenu'])
+        {
+            $nomMenu = $menu['nomMenu'];
+        }
+        else
+        {
+            $nomMenu = $menu['nomSousMenu'];
+        }
+        $categ = $this->pdo->getCategorie($id);
+        switch ($categ) 
+        {
+            case 'T':
+                $contenu = $this->pdo->getContenu($id);
+                $image = $this->pdo->getImage($id);
+                require_once __DIR__.'/../vues/v_texte.php';
+                break;
+            case 'P':
+                $prof = $this->pdo->getProf();
+                require_once __DIR__.'/../vues/v_prof.php';
+                break;
+            case 'E':
+                $contenu = $this->pdo->getContenu($id);
+                $image = $this->pdo->getImage($id);
+                require_once __DIR__.'/../vues/v_terif.php';
+                break;
+            case 'G':
+                $image = $this->pdo->getImage($id);
+                require_once __DIR__.'/../vues/v_galerie.php';
+                break;
+            case 'N':
+                $contenu = $this->pdo->getContenu($id);
+                $image = $this->pdo->getImage($id);
+                require_once __DIR__.'/../vues/v_news.php';
+                break;
+            case 'C':
+                $contenu = $this->pdo->getContenu($id);
+                require_once __DIR__.'/../vues/v_contact.php';
+                break;
+        }
         require_once __DIR__.'/../vues/v_pied.php';
         $view = ob_get_clean();
         return $view;

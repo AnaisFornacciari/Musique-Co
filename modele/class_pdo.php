@@ -70,9 +70,41 @@ class PdoMC
         return $lesLignes;
     }
 
+    public static function getCategorie($idMenu)
+    {
+        $req = "select categ from menu where id = '$idMenu';";
+        $res = PdoMC::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
+    public static function getInfoMenu($idMenu)
+    {
+        $req = "select * from menu where id = '$idMenu';";
+        $res = PdoMC::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
     public static function getContenu($idMenu)
     {
-        $req = "select * from text where idMenu = '$idMenu' order by id";
+        $req = "select * from contenu where idMenu = '$idMenu' order by id";
+        $res = PdoMC::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
+    public static function getImage($idMenu)
+    {
+        $req = "select * from image where idMenu = '$idMenu' order by id";
+        $res = PdoMC::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
+    public static function getProf()
+    {
+        $req = "select * from prof order by id";
         $res = PdoMC::$monPdo->query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;

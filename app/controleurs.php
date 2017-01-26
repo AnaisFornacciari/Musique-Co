@@ -17,7 +17,16 @@ Class ControleurStart
     
     public function start()
     {
-        $contenu = $this->pdo->getContenu(1);
+        $contenu = $pdo->getContenu(1);
+        $menu = $this->pdo->getInfoMenu(1);
+        if(!$menu['sousMenu'])
+        {
+            $nomMenu = $menu['nomMenu'];
+        }
+        else
+        {
+            $nomMenu = $menu['nomSousMenu'];
+        }
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_texte.php';
         require_once __DIR__.'/../vues/v_pied.php';

@@ -183,7 +183,7 @@
                             $classement = $leMenu['classement'];
                             if(!$sousMenu)
                             {
-                                ?> <li><a href="afficher/{<?php echo $id ?>}" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
+                                ?> <li><a href="afficher/<?php echo $id ?>" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
                             }
                             else
                             {
@@ -197,7 +197,7 @@
                                         $id = $leSousMenu['id'];
                                         $nomSousMenu = $leSousMenu['nomSousMenu'];
                                         $classement = $leSousMenu['classement'];
-                                        ?> <li><a href="afficher/{<?php echo $id ?>}" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php
+                                        ?> <li><a href="afficher/<?php echo $id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php
                                     } ?>
                                     </ul>
                                 </li>

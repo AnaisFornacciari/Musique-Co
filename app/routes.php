@@ -2,6 +2,6 @@
                     /* Définition des routes*/
 $app->match('/', "ControleurStart::start"); //par défaut
 
-$app->match('/afficher/{id}', "ControleurAffichage::categorie()");
+$app->match('/afficher/{id}', "ControleurAffichage::categorie($id)");
 
 ?>

@@ -167,7 +167,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                        
                 </button>
-                <a class="navbar-brand" href="afficher/{id}">Musique & Co</a>
+                <a class="navbar-brand" href="afficher/1">Musique & Co</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">

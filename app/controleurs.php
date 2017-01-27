@@ -38,8 +38,8 @@ Class ControleurAffichage
     {
         $this->pdo = PdoMC::getPdoMC();
         ob_start();             // démarre le flux de sortie
+        $LesMenus = $this->pdo->getMenu();
         require_once __DIR__.'/../vues/v_entete.php';
-        require_once __DIR__.'/../vues/v_pied.php';
     }
 
     public function affichage(Request $request, Application $app)

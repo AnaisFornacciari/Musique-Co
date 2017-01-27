@@ -1,7 +1,11 @@
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
   <h3><?php echo  $nomMenu ?></h3>
-  <p><em><?php echo  $contenu['titre'] ?></em></p>
-  <p><?php echo  $contenu['leContenu'] ?></p>
-  <br>
+  <br><br>
+  <?php foreach($contenu as $leContenu)
+  {
+    ?> <p><em><?php echo  $leContenu['titre'] ?></em></p><br>
+    <p><?php echo  $leContenu['leContenu'] ?></p>
+    <br> <?php
+  }?>
 </div>

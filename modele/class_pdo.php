@@ -74,7 +74,7 @@ class PdoMC
     {
         $req = "select categ from menu where id = '$idMenu';";
         $res = PdoMC::$monPdo->query($req);
-        $lesLignes = $res->fetchAll();
+        $lesLignes = $res->fetch();
         return $lesLignes;
     }
 
@@ -82,7 +82,7 @@ class PdoMC
     {
         $req = "select * from menu where id = '$idMenu';";
         $res = PdoMC::$monPdo->query($req);
-        $lesLignes = $res->fetchAll();
+        $lesLignes = $res->fetch();
         return $lesLignes;
     }
 

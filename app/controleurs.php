@@ -17,16 +17,10 @@ Class ControleurStart
     
     public function start()
     {
+        $pdo = PdoMC::getPdoMC();
         $contenu = $pdo->getContenu(1);
-        $menu = $this->pdo->getInfoMenu(1);
-        if(!$menu['sousMenu'])
-        {
-            $nomMenu = $menu['nomMenu'];
-        }
-        else
-        {
-            $nomMenu = $menu['nomSousMenu'];
-        }
+        $menu = $pdo->getInfoMenu(1);
+        $nomMenu = $menu['nomMenu'];
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_texte.php';
         require_once __DIR__.'/../vues/v_pied.php';
@@ -61,7 +55,7 @@ Class ControleurAffichage
         {
             $nomMenu = $menu['nomSousMenu'];
         }
-        $categ = $this->pdo->getCategorie($id);
+        $categ = $menu['categ'];
         switch ($categ) 
         {
             case 'T':
@@ -76,7 +70,7 @@ Class ControleurAffichage
             case 'E':
                 $contenu = $this->pdo->getContenu($id);
                 $image = $this->pdo->getImage($id);
-                require_once __DIR__.'/../vues/v_terif.php';
+                require_once __DIR__.'/../vues/v_tarif.php';
                 break;
             case 'G':
                 $image = $this->pdo->getImage($id);

@@ -152,7 +152,13 @@
             textarea {
                 resize: none;
             }
-        </style>
+            .bandeau-inner img {
+                -webkit-filter: grayscale(90%);
+                filter: grayscale(90%); /* make all photos black and white */ 
+                width: 100%; /* Set width to 100% */
+                margin: auto;
+            }
+                    </style>
 
     </head>
   

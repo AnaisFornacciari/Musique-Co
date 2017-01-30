@@ -1,4 +1,6 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<?php if($menu['id'] = 1)
+{
+  ?> <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -42,4 +44,13 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div> <?php
+}
+else
+{
+  ?> <div id="myBandeau" data-ride="bandeau">
+	<div class="bandeau-inner">
+		<img src="bandeau.jpg" alt="Random Name">
+	</div>
+</div> <?php
+}?>

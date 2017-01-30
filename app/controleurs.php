@@ -47,6 +47,7 @@ Class ControleurAffichage
         $this->init();
         $id = $request->get('id');
         $menu = $this->pdo->getInfoMenu($id);
+        require_once __DIR__.'/../vues/v_bandeau.php';
         if(!$menu['sousMenu'])
         {
             $nomMenu = $menu['nomMenu'];

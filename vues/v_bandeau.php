@@ -50,7 +50,7 @@ else
 {
   ?> <div id="myBandeau" data-ride="bandeau">
 	<div class="bandeau-inner">
-		<img src="bandeau.jpg" alt="Random Name">
+		<img src="bandeau.jpg" alt="Musique&Co">
 	</div>
 </div> <?php
 }?>

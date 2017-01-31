@@ -1,6 +1,6 @@
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
-  <h3><?php echo  $nomMenu ?></h3>
+  <h3><?php echo  $nomDuMenu ?></h3>
   <br>
   <?php foreach($contenu as $leContenu)
   {

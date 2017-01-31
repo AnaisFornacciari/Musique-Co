@@ -158,7 +158,7 @@
                 width: 100%; /* Set width to 100% */
                 margin: auto;
             }
-                    </style>
+        </style>
 
     </head>
   

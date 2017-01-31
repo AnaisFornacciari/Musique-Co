@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="text-center">
-    <h2>Pricing</h2>
+  <h3><?php echo  $nomDuMenu ?></h3>
     <h4>Choose a payment plan that works for you</h4>
   </div>
   <div class="row">

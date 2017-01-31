@@ -50,11 +50,11 @@ Class ControleurAffichage
         require_once __DIR__.'/../vues/v_bandeau.php';
         if(!$menu['sousMenu'])
         {
-            $nomMenu = $menu['nomMenu'];
+            $nomDuMenu = $menu['nomMenu'];
         }
         else
         {
-            $nomMenu = $menu['nomSousMenu'];
+            $nomDuMenu = $menu['nomSousMenu'];
         }
         $categ = $menu['categ'];
         switch ($categ) 

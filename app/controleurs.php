@@ -20,7 +20,7 @@ Class ControleurStart
         $pdo = PdoMC::getPdoMC();
         $contenu = $pdo->getContenu(1);
         $menu = $pdo->getInfoMenu(1);
-        $nomMenu = $menu['nomMenu'];
+        $nomDuMenu = $menu['nomMenu'];
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_texte.php';
         require_once __DIR__.'/../vues/v_pied.php';
@@ -45,9 +45,8 @@ Class ControleurAffichage
     public function affichage(Request $request, Application $app)
     {
         $this->init();
-        $id = $request->get('id');
-        $menu = $this->pdo->getInfoMenu($id);
-        require_once __DIR__.'/../vues/v_bandeau.php';
+        $idMenu = $request->get('id');
+        $menu = $this->pdo->getInfoMenu($idMenu);
         if(!$menu['sousMenu'])
         {
             $nomDuMenu = $menu['nomMenu'];
@@ -60,30 +59,35 @@ Class ControleurAffichage
         switch ($categ) 
         {
             case 'T':
-                $contenu = $this->pdo->getContenu($id);
-                $image = $this->pdo->getImage($id);
+                $contenu = $this->pdo->getContenu($idMenu);
+                $image = $this->pdo->getImage($idMenu);
+                require_once __DIR__.'/../vues/v_bandeau.php';
                 require_once __DIR__.'/../vues/v_texte.php';
                 break;
             case 'P':
                 $prof = $this->pdo->getProf();
+                require_once __DIR__.'/../vues/v_bandeau.php';
                 require_once __DIR__.'/../vues/v_prof.php';
                 break;
             case 'E':
-                $contenu = $this->pdo->getContenu($id);
-                $image = $this->pdo->getImage($id);
+                $contenu = $this->pdo->getContenu($idMenu);
+                $image = $this->pdo->getImage($idMenu);
+                require_once __DIR__.'/../vues/v_bandeau.php';
                 require_once __DIR__.'/../vues/v_tarif.php';
                 break;
             case 'G':
-                $image = $this->pdo->getImage($id);
+                $image = $this->pdo->getImage($idMenu);
                 require_once __DIR__.'/../vues/v_galerie.php';
                 break;
             case 'N':
-                $contenu = $this->pdo->getContenu($id);
-                $image = $this->pdo->getImage($id);
+                $contenu = $this->pdo->getContenu($idMenu);
+                $image = $this->pdo->getImage($idMenu);
+                require_once __DIR__.'/../vues/v_bandeau.php';
                 require_once __DIR__.'/../vues/v_news.php';
                 break;
             case 'C':
-                $contenu = $this->pdo->getContenu($id);
+                $contenu = $this->pdo->getContenu($idMenu);
+                require_once __DIR__.'/../vues/v_bandeau.php';
                 require_once __DIR__.'/../vues/v_contact.php';
                 break;
         }

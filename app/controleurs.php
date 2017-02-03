@@ -11,7 +11,7 @@ Class ControleurStart
     {
         ob_start();             // démarre le flux de sortie
         $pdo = PdoMC::getPdoMC();
-        $lesMenus = $pdo->getMenu();
+        $LesMenus = $pdo->getMenu();
         require_once __DIR__.'/../vues/v_entete.php';
     }
     
@@ -39,6 +39,7 @@ Class ControleurAffichage
         $this->pdo = PdoMC::getPdoMC();
         ob_start();             // démarre le flux de sortie
         $LesMenus = $this->pdo->getMenu();
+        $pdo = $this->pdo;
         require_once __DIR__.'/../vues/v_entete.php';
     }
 

@@ -179,7 +179,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     $classement = 1;
-                    foreach ($lesMenus as $leMenu)
+                    foreach($LesMenus as $leMenu)
                     {
                         if($classement < $leMenu['classement'])
                         {

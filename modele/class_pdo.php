@@ -86,7 +86,7 @@ class PdoMC
         return $lesLignes;
     }
 
-    public static function getContenu($idMenu)
+    public static function getContenus($idMenu)
     {
         $req = "select * from contenu where idMenu = '$idMenu' order by id";
         $res = PdoMC::$monPdo->query($req);
@@ -94,7 +94,7 @@ class PdoMC
         return $lesLignes;
     }
 
-    public static function getImage($idMenu)
+    public static function getImages($idMenu)
     {
         $req = "select * from image where idMenu = '$idMenu' order by id";
         $res = PdoMC::$monPdo->query($req);

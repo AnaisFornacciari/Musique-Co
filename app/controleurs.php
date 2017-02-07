@@ -22,7 +22,7 @@ Class ControleurStart
         $LesImages = $pdo->getImages(1);
         $menu = $pdo->getInfoMenu(1);
         $nomDuMenu = $menu['nomMenu'];
-        /*require_once __DIR__.'/../vues/v_bandeau.php';*/
+        require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_texte.php';
         require_once __DIR__.'/../vues/v_pied.php';
         $view = ob_get_clean(); // récupère le contenu du flux et le vide
@@ -60,6 +60,12 @@ Class ControleurAffichage
         $categ = $menu['categ'];
         switch ($categ) 
         {
+            case 'A':
+                $LesContenus = $this->pdo->getContenus($idMenu);
+                $LesImages = $this->pdo->getImages($idMenu);
+                require_once __DIR__.'/../vues/v_bandeau.php';
+                require_once __DIR__.'/../vues/v_texte.php';
+                break;
             case 'T':
                 $LesContenus = $this->pdo->getContenus($idMenu);
                 $LesImages = $this->pdo->getImages($idMenu);
@@ -88,8 +94,6 @@ Class ControleurAffichage
                 require_once __DIR__.'/../vues/v_news.php';
                 break;
             case 'C':
-                $LesContenus = $this->pdo->getImages($idMenu);
-                require_once __DIR__.'/../vues/v_bandeau.php';
                 require_once __DIR__.'/../vues/v_contact.php';
                 break;
         }

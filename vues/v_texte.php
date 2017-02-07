@@ -4,7 +4,7 @@
   <br>
   <?php foreach($LesContenus as $leContenu)
   {
-    if($leContenu['idMenu'] = 1 and $leContenu['id'] < 4)
+    if($leContenu['idMenu'] == 1 and $leContenu['id'] < 4)
     {
       continue;
     }

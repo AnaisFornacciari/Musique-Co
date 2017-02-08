@@ -1,4 +1,4 @@
-<?php if($menu['id'] = 1)
+<?php echo $menu['id']; if($menu['id'] == 1) //afficher le carousel pour l'accueil et le bandeau pour le reste
 {
   ?> <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -11,7 +11,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <?php $n = sizeof($LesImages);
-      for ($i=0; $i < $n; $i++)
+      for ($i=0; $i < $n; $i++) //afficher les images et son contenu correspondant : même ordre (id)
       {
         $leContenu = $LesContenus[$i];
         $image = $LesImages[$i];

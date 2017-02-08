@@ -179,7 +179,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     $classement = 1;
-                    foreach($LesMenus as $leMenu)
+                    foreach($LesMenus as $leMenu) //boucle pour afficher les menus stockées dans la BDD
                     {
                         if($classement < $leMenu['classement'])
                         {
@@ -203,7 +203,7 @@
                                         $id = $leSousMenu['id'];
                                         $nomSousMenu = $leSousMenu['nomSousMenu'];
                                         $classement = $leSousMenu['classement'];
-                                        ?> <li><a href="afficher/<?php echo $id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php
+                                        ?> <li><a href="afficher/<?php echo $id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php //route paramétrée avec l'id du menu
                                     } ?>
                                     </ul>
                                 </li>

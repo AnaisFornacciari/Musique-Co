@@ -12,11 +12,11 @@
     {
       if(isset($leContenu['titre']))
       {
-        ?> <br><p><em><?php echo  $leContenu['titre'] ?></em></p><br> <?php 
+        ?> <br><p><em><?php echo $leContenu['titre'] ?></em></p><br> <?php 
       }
       if(isset($leContenu['leContenu']))
       {
-        ?><p><?php echo  $leContenu['leContenu'] ?></p><br> <?php 
+        ?><p><?php echo $leContenu['leContenu'] ?></p><br> <?php 
       }
     }
   }?>

@@ -40,7 +40,7 @@ Class ControleurAffichage
         $this->pdo = PdoMC::getPdoMC();
         ob_start();             // démarre le flux de sortie
         $LesMenus = $this->pdo->getMenu();
-        $pdo = $this->pdo;
+        $pdo = $this->pdo;      //pour la première navigation du menu ou "$pdo" n'existe pas dans l'entête'
         require_once __DIR__.'/../vues/v_entete.php';
     }
 
@@ -49,7 +49,7 @@ Class ControleurAffichage
         $this->init();
         $idMenu = $request->get('id');
         $menu = $this->pdo->getInfoMenu($idMenu);
-        if(!$menu['sousMenu'])
+        if(!isset($menu['nomSousMenu']))    //définis le nom du menu ou sous-menu
         {
             $nomDuMenu = $menu['nomMenu'];
         }
@@ -58,7 +58,7 @@ Class ControleurAffichage
             $nomDuMenu = $menu['nomSousMenu'];
         }
         $categ = $menu['categ'];
-        switch ($categ) 
+        switch ($categ)         //permet d'afficher la bonne mise en page du menu selon sa catégorie
         {
             case 'A':
                 $LesContenus = $this->pdo->getContenus($idMenu);

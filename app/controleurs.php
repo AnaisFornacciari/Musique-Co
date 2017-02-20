@@ -102,4 +102,60 @@ Class ControleurAffichage
         return $view;
     }
 }
+
+//**************************************Contrôleur Connexion Admin*****************//
+Class ControleurConnexionAdmin
+{
+    private $pdo;
+
+    public function init()
+    {
+        $this->pdo = PdoMC::getPdoMC();
+        $pdo = $this->pdo;      //pour la première navigation du menu ou "$pdo" n'existe pas dans l'entête'
+        ob_start();             // démarre le flux de sortie
+    }
+    
+    public function connexionAdmin()
+    {
+        $this->init();
+        require_once __DIR__.'/../vues/v_connexion.php';
+        $view = ob_get_clean(); // récupère le contenu du flux et le vide
+        return $view;           // retourne le flux 
+    }
+
+    public function verifierAdmin(Request $request, Application $app)
+    {
+        $this->init();
+        session_start();
+        $login = htmlentities($request->get('login'));
+	    $mdp = htmlentities($request->get('mdp'));
+	    $admin = $this->pdo->getInfosAdmin($login,$mdp);
+	    if(!is_array($admin))
+        {
+            $app['couteauSuisse']->ajouterErreur("Login ou mot de passe incorrect");
+            require_once __DIR__.'/../vues/v_erreurs.php';
+            require_once __DIR__.'/../vues/v_connexion.php';
+            $view = ob_get_clean();
+        }
+        else
+        {
+            $id = $admin['id'];
+            $login = $admin['login'];
+            $email = $admin['email'];
+            $app['couteauSuisse']->connecter($id, $login, $email);
+            $LesMenus = $this->pdo->getMenu();
+            $LesContenus = $this->pdo->getContenus(1);
+            $LesImages = $this->pdo->getImages(1);
+            $menu = $this->pdo->getInfoMenu(1);
+            echo $menu['id'];
+            $nomDuMenu = $menu['nomMenu'];
+            require_once __DIR__.'/../vues/v_entete.php';
+            require_once __DIR__.'/../vues/v_bandeau.php';
+            require_once __DIR__.'/../vues/v_texte.php';
+            require_once __DIR__.'/../vues/v_pied.php';
+            $view = ob_get_clean();
+        }
+        return $view;       
+    }
+}
 ?>

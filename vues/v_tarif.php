@@ -1,26 +1,59 @@
+<br><br><br>
 <div class="container-fluid">
   <div class="text-center">
   <h3><?php echo  $nomDuMenu ?></h3>
-    <h4>Choose a payment plan that works for you</h4>
   </div>
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-4 col-sm-push-2">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
-          <h1>Basic</h1>
+          <h2>Activité</h2>
         </div>
-        <div class="panel-body">
-          <p><strong>20</strong> Lorem</p>
-          <p><strong>15</strong> Ipsum</p>
-          <p><strong>5</strong> Dolor</p>
-          <p><strong>2</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Cours</th>
+              <th>Eveil</th>
+              <th>Atelier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>65€</td>
+              <td>30€</td>
+              <td>65€</td>
+            </tr>
+            <tr>
+              <td>par mois</td>
+              <td>par mois</td>
+              <td>par mois</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+    </div><div class="col-sm-4 col-sm-push-2">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h2>Remboursement</h2>
         </div>
-        <div class="panel-footer">
-          <h3>$19</h3>
-          <h4>per month</h4>
-        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>2ème membre de la famille</th>
+              <th>2ème instrument</th>
+              <th>2ème activité</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>50€</td>
+              <td>50€</td>
+              <td>50€</td>
+            </tr>
+          </tbody>
+        </table>
       </div> 
     </div>
   </div>
 </div>
+<br>

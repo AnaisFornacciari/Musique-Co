@@ -11,11 +11,11 @@ Class CouteauSuisse
      * @param $nom
      * @param $prenom
      */
-        public function connecter($id,$nom,$prenom)
+        public function connecter($id,$login,$email)
         {
-            $_SESSION['idAdmin']= $id; 
-            $_SESSION['nom']= $nom;
-            $_SESSION['prenom']= $prenom;
+            $_SESSION['idAdmin']= $id;
+            $_SESSION['login']= $login;
+            $_SESSION['email']= $email;
         }
 
       /**

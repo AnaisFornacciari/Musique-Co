@@ -109,5 +109,15 @@ class PdoMC
         $lesLignes = $res->fetchAll();
         return $lesLignes;
     }
+
+    public static function getInfosAdmin($login,$mdp)
+    {
+        $req = PdoMC::$monPdo->prepare("select * from admin where admin.login= :login and admin.mdp= :mdp");
+        $req->bindParam(':login', $login);
+        $req->bindParam(':mdp', $mdp);
+        $req->execute();
+        $ligne = $req->fetch();
+        return $ligne;
+    }
 }
 ?>

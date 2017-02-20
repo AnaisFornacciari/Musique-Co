@@ -15,6 +15,7 @@
                 font: 400 15px/1.8 Lato, sans-serif;
                 color: #777;
             }
+            /* Overwrite default styles of h3 and h4 */
             h3, h4 {
                 margin: 10px 0 30px 0;
                 letter-spacing: 10px;      
@@ -48,12 +49,25 @@
                 display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
                 }
             }
+            .carousel-control.right, .carousel-control.left {
+                background-image: none;
+                color: #f4511e;
+            }
+
+            .carousel-indicators li {
+                border-color: #f4511e;
+            }
+
+            .carousel-indicators li.active {
+                background-color: #f4511e;
+            }
             .bg-1 {
                 background: #2d2d30;
                 color: #bdbdbd;
             }
             .bg-1 h3 {color: #fff;}
             .bg-1 p {font-style: italic;}
+            /* Remove rounded borders from list */
             .list-group-item:first-child {
                 border-top-right-radius: 0;
                 border-top-left-radius: 0;
@@ -62,6 +76,7 @@
                 border-bottom-right-radius: 0;
                 border-bottom-left-radius: 0;
             }
+            /* Remove border and add padding to thumbnails */
             .thumbnail {
                 padding: 0 0 15px 0;
                 border: none;
@@ -71,6 +86,7 @@
                 margin-top: 15px;
                 color: #555;
             }
+            /* Black buttons with extra padding and without rounded borders */
             .btn {
                 padding: 10px 20px;
                 background-color: #333;
@@ -78,11 +94,13 @@
                 border-radius: 0;
                 transition: .2s;
             }
+            /* On hover, the color of .btn will transition to white with black text */
             .btn:hover, .btn:focus {
                 border: 1px solid #333;
                 background-color: #fff;
                 color: #000;
             }
+            /* Add a dark gray background color to the modal header and center text */
             .modal-header, h4, .close {
                 background-color: #333;
                 color: #fff !important;
@@ -96,11 +114,12 @@
                 color: #777;
             }
             #googleMap {
-                width: 100%;
+                width: 100%; 
                 height: 300px;
                 -webkit-filter: grayscale(100%);
                 filter: grayscale(100%);
-            }  
+            }
+            /* Add a dark background color with a little bit see-through */
             .navbar {
                 font-family: Montserrat, sans-serif;
                 margin-bottom: 0;
@@ -111,31 +130,39 @@
                 opacity: 0.9;
                 padding: 8px;
             }
+            /* Add a gray color to all navbar links */
             .navbar li a, .navbar .navbar-brand { 
                 color: #d5d5d5 !important;
             }
+            /* On hover, the links will turn white */
             .navbar-nav li a:hover {
                 color: #fff !important;
             }
+            /* The active link */
             .navbar-nav li.active a {
                 color: #fff !important;
                 background-color: #29292c !important;
             }
+            /* Remove border color from the collapsible button */
             .navbar-default .navbar-toggle {
                 border-color: transparent;
             }
+            /* Dropdown */
             .open .dropdown-toggle {
                 color: #fff;
                 background-color: #555 !important;
             }
+            /* Dropdown links */
             .dropdown-menu li a {
                 color: #000 !important;
             }
+            /* On hover, the dropdown links will turn orange */
             .dropdown-menu li a:hover {
-                background-color: red !important;
+                background-color: #f4511e !important;
             }
+            /* Add a dark background color to the footer */
             footer {
-                background-color: #2d2d30;
+                background-color: #f4511e;
                 color: #f5f5f5;
                 padding: 10px;
             }
@@ -145,10 +172,12 @@
             footer a:hover {
                 color: #777;
                 text-decoration: none;
-            }  
+            }
+            /* Remove rounded borders on input fields */
             .form-control {
                 border-radius: 0;
             }
+            /* Disable the ability to resize textareas */
             textarea {
                 resize: none;
             }
@@ -157,6 +186,24 @@
                 filter: grayscale(90%); /* make all photos black and white */ 
                 width: 100%; /* Set width to 100% */
                 margin: auto;
+            }
+            /*.row-same-height {
+            display: table;
+            width: 100%;
+            }
+            .col-sm-height {
+            display: table-cell;
+            float: none;
+            }
+            .col-full-height {
+            height: 100%;
+            vertical-align: middle;
+            }*/
+            .row-eq-height {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display:         flex;
             }
         </style>
 
@@ -173,7 +220,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                        
                 </button>
-                <a class="navbar-brand" href="afficher/1">Musique & Co</a>
+                <?php
+                    $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+                    if(substr($monUrl, 35, 9) == "afficher/")
+                    { $route = null; }
+                    else
+                    { $route = "afficher/"; }
+                    $id = 1;
+                ?>
+                <a class="navbar-brand" href="<?php echo $route.$id ?>">Musique & Co</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -189,7 +244,7 @@
                             $classement = $leMenu['classement'];
                             if(!$sousMenu)
                             {
-                                ?> <li><a href="afficher/<?php echo $id ?>" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
+                                ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
                             }
                             else
                             {
@@ -203,7 +258,7 @@
                                         $id = $leSousMenu['id'];
                                         $nomSousMenu = $leSousMenu['nomSousMenu'];
                                         $classement = $leSousMenu['classement'];
-                                        ?> <li><a href="afficher/<?php echo $id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php //route paramétrée avec l'id du menu
+                                        ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php //route paramétrée avec l'id du menu
                                     } ?>
                                     </ul>
                                 </li>

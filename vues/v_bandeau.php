@@ -1,4 +1,4 @@
-<?php echo $menu['id']; if($menu['id'] == 1) //afficher le carousel pour l'accueil et le bandeau pour le reste
+<?php if($menu['id'] == 1) //afficher le carousel pour l'accueil et le bandeau pour le reste
 {
   ?> <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -23,6 +23,7 @@
         {
           $class = "item";
         }
+        var_dump($image['lImage']);
         ?> <div class="<?php echo $class ?>">
             <img src="<?php echo $image['lImage'] ?>" alt="Musique&Co">
             <div class="carousel-caption">
@@ -47,7 +48,8 @@ else
 {
   foreach($LesImages as $image)
   {
-    ?><div class="bandeau-inner">
+      var_dump($image['lImage']);?>
+      <div class="bandeau-inner">
 		    <img src="<?php echo $image['lImage'] ?>" alt="Musique&Co">
 	    </div><?php
   }

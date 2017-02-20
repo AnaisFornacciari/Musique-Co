@@ -23,7 +23,6 @@
         {
           $class = "item";
         }
-        var_dump($image['lImage']);
         ?> <div class="<?php echo $class ?>">
             <img src="<?php echo $image['lImage'] ?>" alt="Musique&Co">
             <div class="carousel-caption">
@@ -48,7 +47,7 @@ else
 {
   foreach($LesImages as $image)
   {
-      var_dump($image['lImage']);?>
+      ?>
       <div class="bandeau-inner">
 		    <img src="<?php echo $image['lImage'] ?>" alt="Musique&Co">
 	    </div><?php

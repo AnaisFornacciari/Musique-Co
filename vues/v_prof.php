@@ -1,4 +1,5 @@
 <!-- Container (The Band Section) -->
+<br><br>
 <div id="band" class="container text-center">
   <h3><?php echo  $nomDuMenu ?></h3>
   <div class="row">

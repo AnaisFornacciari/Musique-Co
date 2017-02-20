@@ -14,29 +14,23 @@
   <div id="googleMap"></div>
 
   <!-- Add Google Maps -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2yZoUALgcJnxzixepkboDyc0cSz6vqKE&callback=initialize" type="text/javascript"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2yZoUALgcJnxzixepkboDyc0cSz6vqKE&callback=initMap" type="text/javascript" async defer></script>
   <script>
-    var myCenter = new google.maps.LatLng(48.856614, 2.352222);
-
-    function initialize() {
-    var mapProp = {
-    center:myCenter,
-    zoom:12,
-    scrollwheel:false,
-    draggable:false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-    var marker = new google.maps.Marker({
-    position:myCenter,
-    });
-
-    marker.setMap(map);
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
+    function initMap() 
+    {
+        var latLng = new google.maps.LatLng(48.9306965, 2.4928865);
+        var myOptions = 
+        {
+          zoom: 13,
+          center: latLng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById('googleMap'), myOptions);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      }
   </script>
 
   <!-- Footer -->

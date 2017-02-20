@@ -22,6 +22,7 @@ Class ControleurStart
         $LesImages = $pdo->getImages(1);
         $menu = $pdo->getInfoMenu(1);
         $nomDuMenu = $menu['nomMenu'];
+        $routeImage = 1; //pour la route de l'image lors de la première visite sur le site + (../public)
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_texte.php';
         require_once __DIR__.'/../vues/v_pied.php';
@@ -74,7 +75,6 @@ Class ControleurAffichage
                 break;
             case 'P':
                 $prof = $this->pdo->getProf();
-                require_once __DIR__.'/../vues/v_bandeau.php';
                 require_once __DIR__.'/../vues/v_prof.php';
                 break;
             case 'E':

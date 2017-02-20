@@ -111,8 +111,8 @@ Class ControleurConnexionAdmin
     public function init()
     {
         $this->pdo = PdoMC::getPdoMC();
-        $pdo = $this->pdo;      //pour la première navigation du menu ou "$pdo" n'existe pas dans l'entête'
         ob_start();             // démarre le flux de sortie
+        $pdo = $this->pdo;      //pour la première navigation du menu ou "$pdo" n'existe pas dans l'entête'    
     }
     
     public function connexionAdmin()
@@ -147,7 +147,6 @@ Class ControleurConnexionAdmin
             $LesContenus = $this->pdo->getContenus(1);
             $LesImages = $this->pdo->getImages(1);
             $menu = $this->pdo->getInfoMenu(1);
-            echo $menu['id'];
             $nomDuMenu = $menu['nomMenu'];
             require_once __DIR__.'/../vues/v_entete.php';
             require_once __DIR__.'/../vues/v_bandeau.php';

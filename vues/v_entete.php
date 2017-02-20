@@ -238,7 +238,7 @@
                     {
                         if($classement < $leMenu['classement'])
                         {
-                            $id = $leMenu['id'];
+                            $id = $leMenu['id'];echo $id;
                             $nomMenu = $leMenu['nomMenu'];
                             $sousMenu = $leMenu['sousMenu'];
                             $classement = $leMenu['classement'];

@@ -15,7 +15,7 @@
       {
         $leContenu = $LesContenus[$i];
         $image = $LesImages[$i];
-        if($i == 0)
+        if($i == 0) //permet de définir la première image du carousel en "item active" et le reste en simple "item"
         {
           $class = "item active";
         }
@@ -23,9 +23,9 @@
         {
           $class = "item";
         }
-        if(isset($routeImage) && $routeImage == 1)
+        if(isset($routeImage) && $routeImage == 1) // modifie la route de l'image pour la première visite afin de se positionner dans le bon dossier (on est pas encore dans "../public")
         {
-          $lienImage = str_replace("..", "../public", $image['lImage']); //remplace l'occurence ".." par "../public" dans le lien de l'image pour la première visite afin de se positionner dans le bon dossier (on est pas encore dans "../public")
+          $lienImage = str_replace("..", "../public", $image['lImage']); //remplace l'occurence ".." par "../public" dans la variable : $image['lImage']
         }
         else
         {

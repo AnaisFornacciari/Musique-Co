@@ -2,7 +2,6 @@
 <div id="band" class="container text-center">
   <h3><?php echo  $nomDuMenu ?></h3>
   <div class='row'>
-    <div class="row-eq-height">
     <?php foreach($LesContenus as $leContenu)
     {
       $contenu = $app['couteauSuisse']->truncate($leContenu['leContenu'], 400, '...', true); //tronque le contenu "news" si ce dernier dépasse les 400 caractères
@@ -41,6 +40,5 @@
         }?>
       </div><?php
     }?>
-    </div>
   </div>
 </div>

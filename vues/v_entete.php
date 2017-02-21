@@ -12,7 +12,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
             body {
-                font: 400 15px/1.8 Lato, sans-serif;
+                font: 400 16px/1.8 Lato, sans-serif;
                 color: #777;
             }
             /* Overwrite default styles of h3 and h4 */
@@ -23,7 +23,7 @@
                 color: #111;
             }
             .container {
-                padding: 30px 120px;
+                padding: 50px 100px;
             }
             .person {
                 border: 10px solid transparent;
@@ -200,10 +200,14 @@
             vertical-align: middle;
             }*/
             .row-eq-height {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display:         flex;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display:         flex;
+            }
+            table {
+                border-collapse: separate;
+                border-spacing: 50px 4px; /* Nombre de pixels d'espace horizontal (50px), vertical (8px) */
             }
         </style>
 
@@ -238,7 +242,7 @@
                     {
                         if($classement < $leMenu['classement'])
                         {
-                            $id = $leMenu['id'];echo $id;
+                            $id = $leMenu['id'];
                             $nomMenu = $leMenu['nomMenu'];
                             $sousMenu = $leMenu['sousMenu'];
                             $classement = $leMenu['classement'];
@@ -252,7 +256,7 @@
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <?php echo  $nomMenu ?>
                                     <span class="caret"></span></a>
                                     <ul class="dropdown-menu"> <?php
-                                    $lesSousMenus = $pdo->getSousMenu($nomMenu);
+                                    $lesSousMenus = $this->pdo->getSousMenu($nomMenu);
                                     foreach($lesSousMenus as $leSousMenu)
                                     {
                                         $id = $leSousMenu['id'];

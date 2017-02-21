@@ -23,11 +23,6 @@
               <td>30€</td>
               <td>65€</td>
             </tr>
-            <tr>
-              <td>par mois</td>
-              <td>par mois</td>
-              <td>par mois</td>
-            </tr>
           </tbody>
         </table>
       </div> 

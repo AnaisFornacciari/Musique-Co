@@ -7,22 +7,23 @@ use Symfony\Component\HttpFoundation\Response;
 //**************************************Contrôleur de première visite*****************//
 Class ControleurStart
 {
+    private $pdo;
+    
     public function __construct()
     {
+        $this->pdo = PdoMC::getPdoMC();
         ob_start();             // démarre le flux de sortie
-        $pdo = PdoMC::getPdoMC();
-        $LesMenus = $pdo->getMenu();
+        $LesMenus = $this->pdo->getMenu();
         require_once __DIR__.'/../vues/v_entete.php';
     }
     
     public function start()
     {
-        $pdo = PdoMC::getPdoMC();
-        $LesContenus = $pdo->getContenus(1);
-        $LesImages = $pdo->getImages(1);
-        $menu = $pdo->getInfoMenu(1);
+        $LesContenus = $this->pdo->getContenus(1);
+        $LesImages = $this->pdo->getImages(1);
+        $menu = $this->pdo->getInfoMenu(1);
         $nomDuMenu = $menu['nomMenu'];
-        $routeImage = 1; //pour la route de l'image lors de la première visite sur le site + (../public)
+        $routeImage = 1;        //pour la route de l'image lors de la première visite sur le site + (../public)
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_texte.php';
         require_once __DIR__.'/../vues/v_pied.php';
@@ -41,7 +42,6 @@ Class ControleurAffichage
         $this->pdo = PdoMC::getPdoMC();
         ob_start();             // démarre le flux de sortie
         $LesMenus = $this->pdo->getMenu();
-        $pdo = $this->pdo;      //pour la première navigation du menu ou "$pdo" n'existe pas dans l'entête'
         require_once __DIR__.'/../vues/v_entete.php';
     }
 
@@ -74,14 +74,8 @@ Class ControleurAffichage
                 require_once __DIR__.'/../vues/v_texte.php';
                 break;
             case 'P':
-                $prof = $this->pdo->getProf();
+                $LesProfs = $this->pdo->getProf();
                 require_once __DIR__.'/../vues/v_prof.php';
-                break;
-            case 'E':
-                $LesContenus = $this->pdo->getContenus($idMenu);
-                $LesImages = $this->pdo->getImages($idMenu);
-                require_once __DIR__.'/../vues/v_bandeau.php';
-                require_once __DIR__.'/../vues/v_tarif.php';
                 break;
             case 'G':
                 $LesImages = $this->pdo->getImages($idMenu);
@@ -112,7 +106,6 @@ Class ControleurConnexionAdmin
     {
         $this->pdo = PdoMC::getPdoMC();
         ob_start();             // démarre le flux de sortie
-        $pdo = $this->pdo;      //pour la première navigation du menu ou "$pdo" n'existe pas dans l'entête'    
     }
     
     public function connexionAdmin()
@@ -148,6 +141,7 @@ Class ControleurConnexionAdmin
             $LesImages = $this->pdo->getImages(1);
             $menu = $this->pdo->getInfoMenu(1);
             $nomDuMenu = $menu['nomMenu'];
+            $routeImage = 1;        //pour la route de l'image lors de la première visite sur le site ou après connexion + (../public)
             require_once __DIR__.'/../vues/v_entete.php';
             require_once __DIR__.'/../vues/v_bandeau.php';
             require_once __DIR__.'/../vues/v_texte.php';

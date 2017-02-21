@@ -3,16 +3,18 @@
 <div id="band" class="container text-center">
   <h3><?php echo  $nomDuMenu ?></h3>
   <div class="row">
+  <?php foreach($LesProfs as $leProf)
+  {?>
     <div class="col-sm-4">
-      <p class="text-center"><strong>Nom</strong></p><br>
+      <p class="text-center"><strong><?php echo $leProf['nom']." ".$leProf['prenom']?></strong></p><br>
       <a href="#demo" data-toggle="collapse">
-        <img src="bandmember.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+        <img src="<?php echo $leProf['image'] ?>" class="img-circle person" alt="professeur" width="255" height="255">
       </a>
       <div>
-        <p>Guitarist and Lead Vocalist</p>
-        <p>Loves long walks on the beach</p>
-        <p>Member since 1988</p>
+        <p><b>Discipline :</b></p>
+        <p><?php echo $leProf['discipline'] ?></p>
       </div>
-    </div>
+    </div><?php
+  }?>
   </div>
 </div>

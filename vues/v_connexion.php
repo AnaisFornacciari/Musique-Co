@@ -453,7 +453,10 @@
 
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
-<div class="text-center" style="padding:50px 0">
+<div class="text-center" style="padding:50px 0;
+                                position: relative;
+                                margin-left: 40%;
+                                margin-right:40%;">
 	<div class="logo">Connexion Admin</div>
 	<!-- Main Form -->
 	<div class="login-form-1">

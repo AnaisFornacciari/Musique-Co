@@ -22,7 +22,7 @@ Class CouteauSuisse
      * Teste si l'admin est connecté
      * @return vrai ou faux 
      */
-        public  function estConnecte()
+        public function estConnecte()
         {
             return isset($_SESSION['idAdmin']);
         }

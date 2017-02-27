@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 Class ControleurStart
 {
     private $pdo;
+    private $idAdmin;
+    private $login;
+    private $email;
     
     public function __construct()
     {
@@ -17,8 +20,15 @@ Class ControleurStart
         require_once __DIR__.'/../vues/v_entete.php';
     }
     
-    public function start()
+    public function start(Application $app)
     {
+        session_start();
+        if($app['couteauSuisse']->estConnecte())
+        {
+            $this->idAdmin = $_SESSION['idAdmin'];
+            $this->login = $_SESSION['login'];
+            $this->email = $_SESSION['email'];
+        }
         $LesContenus = $this->pdo->getContenus(1);
         $LesImages = $this->pdo->getImages(1);
         $menu = $this->pdo->getInfoMenu(1);
@@ -54,14 +64,13 @@ Class ControleurConnexionAdmin
 
     public function verifierAdmin(Request $request, Application $app)
     {
-        $this->init();
         session_start();
+        $this->init();
         $login = htmlentities($request->get('login'));
 	    $mdp = htmlentities($request->get('mdp'));
 	    $admin = $this->pdo->getInfosAdmin($login,$mdp);
 	    if(!is_array($admin))
         {
-            $app['couteauSuisse']->ajouterErreur("Login ou mot de passe incorrect");
             require_once __DIR__.'/../vues/v_erreurs.php';
             require_once __DIR__.'/../vues/v_connexion.php';
             $view = ob_get_clean();
@@ -89,7 +98,7 @@ Class ControleurConnexionAdmin
         return $view;       
     }
 
-    public function deconnecter(Application $app)
+    public function deconnexionAdmin(Application $app)
     {
         $app['couteauSuisse']->deconnecter();
         $app['couteauSuisse']->Logout();
@@ -105,12 +114,16 @@ Class ControleurAffichage
     private $login;
     private $email;
 
-    public function init()
+    public function init(Application $app)
     {
         $this->pdo = PdoMC::getPdoMC();
-        $this->idAdmin = $_SESSION['idAdmin'];
-        $this->login = $_SESSION['login'];
-        $this->email = $_SESSION['emain'];
+        session_start();
+        if($app['couteauSuisse']->estConnecte())
+        {
+            $this->idAdmin = $_SESSION['idAdmin'];
+            $this->login = $_SESSION['login'];
+            $this->email = $_SESSION['email'];
+        }
         ob_start();             // démarre le flux de sortie
         $LesMenus = $this->pdo->getMenu();
         require_once __DIR__.'/../vues/v_entete.php';
@@ -118,7 +131,7 @@ Class ControleurAffichage
 
     public function affichage(Request $request, Application $app)
     {
-        $this->init();
+        $this->init($app);
         $message = $this->pdo->getMessage();
         $idMenu = $request->get('id');
         $menu = $this->pdo->getInfoMenu($idMenu);
@@ -183,12 +196,16 @@ Class ControleurActionsAdmin
     private $login;
     private $email;
 
-    public function init()
+    public function init(Application $app)
     {
         $this->pdo = PdoMC::getPdoMC();
-        $this->idAdmin = $_SESSION['idAdmin'];
-        $this->login = $_SESSION['login'];
-        $this->email = $_SESSION['emain'];
+        session_start();
+        if($app['couteauSuisse']->estConnecte())
+        {
+            $this->idAdmin = $_SESSION['idAdmin'];
+            $this->login = $_SESSION['login'];
+            $this->email = $_SESSION['email'];
+        }
         ob_start();             // démarre le flux de sortie
         $LesMenus = $this->pdo->getMenu();
         require_once __DIR__.'/../vues/v_entete.php';
@@ -198,10 +215,10 @@ Class ControleurActionsAdmin
 
     public function modifierContenu(Request $request, Application $app)
     {
-        $this->init();
+        $this->init($app);
         $message = $this->pdo->getMessage();
         $idContenu = $request->get('idContenu');
-        require_once __DIR__.'/../vues/v_modifierContenu.php';
+       
         require_once __DIR__.'/../vues/v_pied.php';
         $view = ob_get_clean();
         return $view;

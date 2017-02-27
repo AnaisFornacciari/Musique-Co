@@ -8,11 +8,7 @@
  * les 4 premiers pour la connexion
  * $monPdo de type PDO 
  * $monPdoMC qui contiendra l'unique instance de la classe
- 
- * @package default
- * @author Cheri Bibi
- * @version    1.0
- * @link       http://www.php.net/manual/fr/book.pdo.php
+
  */
 
 class PdoMC

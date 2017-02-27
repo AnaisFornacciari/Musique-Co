@@ -10,16 +10,41 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <meta name="keywords" content="opensource rich wysiwyg text editor jquery bootstrap execCommand html5" />
+        <meta name="description" content="This tiny jQuery Bootstrap WYSIWYG plugin turns any DIV into a HTML5 rich text editor" />
+        <link rel="apple-touch-icon" href="//mindmup.s3.amazonaws.com/lib/img/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="http://mindmup.s3.amazonaws.com/lib/img/favicon.ico" >
+        <link href="external/google-code-prettify/prettify.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script src="external/jquery.hotkeys.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script src="external/google-code-prettify/prettify.js"></script>
+        <script src="bootstrap-wysiwyg.js"></script>
         <style>
+            @media screen and (max-width: 480px) {
             body {
-                font: 400 16px/1.8 Lato, sans-serif;
-                color: #777;
+                font-size: 90%;
+            }
+            }
+
+            @media screen and (min-width: 1000px) {
+            body {
+                font-size: 110%;
+            }
+            }
+            body {
+                font: 400 17px/1.8 Lato, sans-serif;
+                color: #3C3939;
             }
             /* Overwrite default styles of h3 and h4 */
             h3, h4 {
                 margin: 10px 0 30px 0;
                 letter-spacing: 10px;      
-                font-size: 20px;
+                font-size: 24px;
                 color: #111;
             }
             .container {
@@ -205,9 +230,48 @@
                 display: -ms-flexbox;
                 display:         flex;
             }
+            /* Tableau responsive */
             table {
                 border-collapse: separate;
                 border-spacing: 50px 4px; /* Nombre de pixels d'espace horizontal (50px), vertical (8px) */
+            }
+            #editor {
+            max-height: 250px;
+            height: 250px;
+            background-color: white;
+            border-collapse: separate; 
+            border: 1px solid rgb(204, 204, 204); 
+            padding: 4px; 
+            box-sizing: content-box; 
+            -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+            box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+            border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px; border-top-left-radius: 3px;
+            overflow: scroll;
+            outline: none;
+            }
+            #voiceBtn {
+            width: 20px;
+            color: transparent;
+            background-color: transparent;
+            transform: scale(2.0, 2.0);
+            -webkit-transform: scale(2.0, 2.0);
+            -moz-transform: scale(2.0, 2.0);
+            border: transparent;
+            cursor: pointer;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            }
+
+            div[data-role="editor-toolbar"] {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            }
+
+            .dropdown-menu a {
+            cursor: pointer;
             }
         </style>
 
@@ -240,33 +304,36 @@
                     $classement = 1;
                     foreach($LesMenus as $leMenu) //boucle pour afficher les menus stockées dans la BDD
                     {
-                        if($classement < $leMenu['classement'])
+                        if($leMenu['archive'])
                         {
-                            $id = $leMenu['id'];
-                            $nomMenu = $leMenu['nomMenu'];
-                            $sousMenu = $leMenu['sousMenu'];
-                            $classement = $leMenu['classement'];
-                            if(!$sousMenu)
+                            if($classement < $leMenu['classement'])
                             {
-                                ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
-                            }
-                            else
-                            {
-                                ?> <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <?php echo  $nomMenu ?>
-                                    <span class="caret"></span></a>
-                                    <ul class="dropdown-menu"> <?php
-                                    $lesSousMenus = $this->pdo->getSousMenu($nomMenu);
-                                    foreach($lesSousMenus as $leSousMenu)
-                                    {
-                                        $id = $leSousMenu['id'];
-                                        $nomSousMenu = $leSousMenu['nomSousMenu'];
-                                        $classement = $leSousMenu['classement'];
-                                        ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php //route paramétrée avec l'id du menu
-                                    } ?>
-                                    </ul>
-                                </li>
-                                <?php
+                                $id = $leMenu['id'];
+                                $nomMenu = $leMenu['nomMenu'];
+                                $sousMenu = $leMenu['sousMenu'];
+                                $classement = $leMenu['classement'];
+                                if(!$sousMenu)
+                                {
+                                    ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
+                                }
+                                else
+                                {
+                                    ?> <li class="dropdown">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <?php echo  $nomMenu ?>
+                                        <span class="caret"></span></a>
+                                        <ul class="dropdown-menu"> <?php
+                                        $lesSousMenus = $this->pdo->getSousMenu($nomMenu);
+                                        foreach($lesSousMenus as $leSousMenu)
+                                        {
+                                            $id = $leSousMenu['id'];
+                                            $nomSousMenu = $leSousMenu['nomSousMenu'];
+                                            $classement = $leSousMenu['classement'];
+                                            ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php //route paramétrée avec l'id du menu
+                                        } ?>
+                                        </ul>
+                                    </li>
+                                    <?php
+                                }
                             }
                         }
                     }
@@ -276,3 +343,4 @@
                 </div>
             </div>
         </nav>
+        <?php echo $_SESSION['idAdmin']; ?>

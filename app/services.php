@@ -7,9 +7,9 @@ Class CouteauSuisse
     /**
      * Enregistre dans une variable session les infos d'un admin
 
-     * @param $id 
-     * @param $nom
-     * @param $prenom
+     * @param $id
+     * @param $login
+     * @param $email
      */
         public function connecter($id,$login,$email)
         {
@@ -19,7 +19,7 @@ Class CouteauSuisse
         }
 
       /**
-     * Teste si un quelconque admin est connecté
+     * Teste si l'admin est connecté
      * @return vrai ou faux 
      */
         public  function estConnecte()
@@ -34,7 +34,6 @@ Class CouteauSuisse
         {
             session_destroy();
         }
-
 
      /**
      * Tronque une chaine de caractère sans couper un mot avec une taille définis
@@ -57,66 +56,6 @@ Class CouteauSuisse
             
             return substr_replace($string, $replacement, $max_length);
         }
-
-    /**
-     * Ajoute le libellé d'une erreur au tableau des erreurs 
-
-     * @param $msg : le libellé de l'erreur 
-     */
-        function ajouterErreur($msg){
-           if (! isset($_REQUEST['erreurs']))
-            {
-              $_REQUEST['erreurs']=array();
-            } 
-           $_REQUEST['erreurs'][]=$msg;
-        }
-
-    /**
-     * Retoune le nombre de lignes du tableau des erreurs 
-
-     * @return le nombre d'erreurs
-     */
-        function nbErreurs()
-        {
-           if (!isset($_REQUEST['erreurs']))
-            {
-                return 0;
-            }
-            else
-            {
-                return count($_REQUEST['erreurs']);
-            }
-        }
-        
-    /**
-     * Ajoute le libellé d'un "sucess" au tableau des "sucess" 
-
-     * @param $msg : le libellé du "sucess"
-     */
-        function ajouterSucess($msg){
-           if (! isset($_REQUEST['sucess']))
-            {
-              $_REQUEST['sucess']=array();
-            } 
-           $_REQUEST['sucess'][]=$msg;
-        }
-        
-    /**
-     * Retoune le nombre de lignes du tableau des "sucess"
-
-     * @return le nombre de "sucess"
-     */
-        function nbSucess()
-        {
-           if (!isset($_REQUEST['sucess']))
-            {
-                return 0;
-            }
-            else
-            {
-                return count($_REQUEST['sucess']);
-            }
-        } 
 
         function Logout()
         {

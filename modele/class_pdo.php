@@ -94,6 +94,14 @@ class PdoMC
         return $lesLignes;
     }
 
+    public static function getNews($idMenu)
+    {
+        $req = "select * from contenu where idMenu = '$idMenu' order by dateAjout desc";
+        $res = PdoMC::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
     public static function getImages($idMenu)
     {
         $req = "select * from image where idMenu = '$idMenu' order by id";
@@ -108,6 +116,14 @@ class PdoMC
         $res = PdoMC::$monPdo->query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
+    }
+
+    public static function getMessage()
+    {
+        $req = "select * from message";
+        $res = PdoMC::$monPdo->query($req);
+        $ligne = $res->fetch();
+        return $ligne;
     }
 
     public static function getInfosAdmin($login,$mdp)

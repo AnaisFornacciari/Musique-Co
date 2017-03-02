@@ -16,8 +16,6 @@ Class ControleurStart
     {
         $this->pdo = PdoMC::getPdoMC();
         ob_start();             // démarre le flux de sortie
-        $LesMenus = $this->pdo->getMenu();
-        require_once __DIR__.'/../vues/v_entete.php';
     }
     
     public function start(Application $app)
@@ -29,12 +27,14 @@ Class ControleurStart
             $this->login = $_SESSION['login'];
             $this->email = $_SESSION['email'];
         }
+        $LesMenus = $this->pdo->getMenus();
         $LesContenus = $this->pdo->getContenus(1);
         $LesImages = $this->pdo->getImages(1);
         $menu = $this->pdo->getInfoMenu(1);
         $message = $this->pdo->getMessage();
         $nomDuMenu = $menu['nomMenu'];
         $routeImage = 1;        //pour la route de l'image lors de la première visite sur le site + (../public)
+        require_once __DIR__.'/../vues/v_entete.php';
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_message.php';
         require_once __DIR__.'/../vues/v_texte.php';
@@ -81,7 +81,7 @@ Class ControleurConnexionAdmin
             $login = $admin['login'];
             $email = $admin['email'];
             $app['couteauSuisse']->connecter($id, $login, $email); //création de la session de l'admin
-            $LesMenus = $this->pdo->getMenu();
+            $LesMenus = $this->pdo->getMenus();
             $LesContenus = $this->pdo->getContenus(1);
             $LesImages = $this->pdo->getImages(1);
             $menu = $this->pdo->getInfoMenu(1);
@@ -125,7 +125,7 @@ Class ControleurAffichage
             $this->email = $_SESSION['email'];
         }
         ob_start();             // démarre le flux de sortie
-        $LesMenus = $this->pdo->getMenu();
+        $LesMenus = $this->pdo->getMenus();
         require_once __DIR__.'/../vues/v_entete.php';
     }
 
@@ -168,7 +168,7 @@ Class ControleurAffichage
             case 'G':
                 $LesImages = $this->pdo->getImages($idMenu);
                 require_once __DIR__.'/../vues/v_message.php';
-                require_once __DIR__.'/../vues/v_galerie.php';
+                require_once __DIR__.'/../vues/v_galerie_photo.php';
                 break;
             case 'N':
                 $LesContenus = $this->pdo->getNews($idMenu);
@@ -196,6 +196,28 @@ Class ControleurActionsAdmin
     private $login;
     private $email;
 
+    // public function init(Application $app)
+    // {
+    //     $this->pdo = PdoMC::getPdoMC();
+    //     session_start();
+    //     if($app['couteauSuisse']->estConnecte())
+    //     {
+    //         $this->idAdmin = $_SESSION['idAdmin'];
+    //         $this->login = $_SESSION['login'];
+    //         $this->email = $_SESSION['email'];
+    //         ob_start();             // démarre le flux de sortie
+    //         $LesMenus = $this->pdo->getMenus();
+    //         require_once __DIR__.'/../vues/v_entete.php';
+    //     }
+    //     else
+    //     {
+    //         ob_start();             // démarre le flux de sortie
+    //         $response = new response ();
+    //         $response->setContent ( 'Connexion nécessaire' );
+    //         return $response;
+    //     }
+    // }
+
     public function init(Application $app)
     {
         $this->pdo = PdoMC::getPdoMC();
@@ -207,21 +229,33 @@ Class ControleurActionsAdmin
             $this->email = $_SESSION['email'];
         }
         ob_start();             // démarre le flux de sortie
-        $LesMenus = $this->pdo->getMenu();
+        $LesMenus = $this->pdo->getMenus();
         require_once __DIR__.'/../vues/v_entete.php';
-        require_once __DIR__.'/../vues/v_bandeau.php';
-        require_once __DIR__.'/../vues/v_message.php';
     }
 
     public function modifierContenu(Request $request, Application $app)
     {
         $this->init($app);
-        $message = $this->pdo->getMessage();
-        $idContenu = $request->get('idContenu');
-       
+        $idContenu = $request->get('id');echo $idContenu;
+        $leContenu = $this->pdo->getContenu($idContenu);
+        $idMenu = $this->pdo->getMenu($idContenu); //définir l'id du menu où on modifie le contenu afin d'y être redirigé
+        $menu = $this->pdo->getInfoMenu($idMenu);
+        $nomDuMenu = $menu['nomMenu'];
+        require_once __DIR__.'/../vues/v_modifierContenu.php';
         require_once __DIR__.'/../vues/v_pied.php';
         $view = ob_get_clean();
         return $view;
+    }
+
+    public function validerModif(Request $request, Application $app)
+    {
+        $this->init($app);
+        $idContenu = $request->get('idContenu');
+        $idMenu = $request->get('idMenu');
+        $titre = htmlentities($request->get('titre'));
+	    $leContenu = htmlentities($request->get('leContenu'));
+        $this->pdo->modifierContenu($idContenu, $titre, $leContenu);
+        $app->redirect('/afficher/$idMenu');
     }
 }
 ?>

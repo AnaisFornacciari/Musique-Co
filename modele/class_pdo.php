@@ -50,15 +50,24 @@ class PdoMC
         return PdoMC::$monPdoMC;  
     }
     
-    public static function getMenu()
+    public static function getMenus()
     {
         $req = "select * from menu order by classement;";
         $res = PdoMC::$monPdo->query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
     }
+    
+    public static function getMenu($idContenu)
+    {
+        $req = PdoMC::$monPdo->prepare("select idMenu from contenu where id = :id");
+        $req->bindParam(':id', $idContenu);
+        $req->execute();
+        $ligne = $req->fetch();
+        return $ligne;
+    }
 
-    public static function getSousMenu($nomMenu)
+    public static function getSousMenus($nomMenu)
     {
         $req = "select * from menu where nomMenu = '$nomMenu' and sousMenu = false order by classement;";
         $res = PdoMC::$monPdo->query($req);
@@ -70,16 +79,16 @@ class PdoMC
     {
         $req = "select categ from menu where id = '$idMenu';";
         $res = PdoMC::$monPdo->query($req);
-        $lesLignes = $res->fetch();
-        return $lesLignes;
+        $ligne = $res->fetch();
+        return $ligne;
     }
 
     public static function getInfoMenu($idMenu)
     {
         $req = "select * from menu where id = '$idMenu';";
         $res = PdoMC::$monPdo->query($req);
-        $lesLignes = $res->fetch();
-        return $lesLignes;
+        $ligne = $res->fetch();
+        return $ligne;
     }
 
     public static function getContenus($idMenu)
@@ -88,6 +97,14 @@ class PdoMC
         $res = PdoMC::$monPdo->query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
+    }
+
+    public static function getContenu($idContenu)
+    {
+        $req = "select * from contenu where id = '$idContenu'";
+        $res = PdoMC::$monPdo->query($req);
+        $ligne = $res->fetch();
+        return $ligne;
     }
 
     public static function getNews($idMenu)
@@ -130,6 +147,23 @@ class PdoMC
         $req->execute();
         $ligne = $req->fetch();
         return $ligne;
+    }
+
+    public static function modifierContenu($idContenu, $titre, $leContenu)
+    {
+        $req = PdoMC::$monPdo->prepare("update contenu set titre = :titre and leContenu :leContenu where id = '$idContenu'");
+        $req->bindParam(':titre', $titre);
+        $req->bindParam(':leContenu', $leContenu);
+        // insertion d'une ligne
+        $req->execute();
+    }
+
+    public static function modifierImage($idImage, $lImage)
+    {
+        $req = PdoMC::$monPdo->prepare("update image set lImage = :lImage where id = '$idImage'");
+        $req->bindParam(':lImage', $lImage);
+        // insertion d'une ligne
+        $req->execute();
     }
 }
 ?>

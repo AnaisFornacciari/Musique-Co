@@ -1,10 +1,10 @@
-<!-- Container (The Band Section) -->
+<!-- Container -->
 <div id="band" class="container text-center">
   <h3><?php echo  $nomDuMenu ?></h3>
   <br>
   <?php foreach($LesContenus as $leContenu)
   {
-    if($leContenu['idMenu'] == 1 and $leContenu['id'] < 4) //ne pas afficher le contenu du carousel
+    if($leContenu['id'] < 4) //ne pas afficher le contenu du carousel
     {
       continue;
     }

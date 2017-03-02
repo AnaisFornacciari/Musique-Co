@@ -224,6 +224,9 @@
             list-style:none;
             margin-left: -40px;
             margin-top:20px;
+            max-width: 1200px;
+            max-height : 240px;
+            overflow:scroll;
             }
             element.style { position:relative; }
         </style>
@@ -275,7 +278,7 @@
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <?php echo  $nomMenu ?>
                                         <span class="caret"></span></a>
                                         <ul class="dropdown-menu"> <?php
-                                        $lesSousMenus = $this->pdo->getSousMenu($nomMenu);
+                                        $lesSousMenus = $this->pdo->getSousMenus($nomMenu);
                                         foreach($lesSousMenus as $leSousMenu)
                                         {
                                             $id = $leSousMenu['id'];

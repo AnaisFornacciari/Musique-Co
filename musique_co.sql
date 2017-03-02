@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 02 Mars 2017 à 17:44
+-- Généré le :  Jeu 02 Mars 2017 à 18:00
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -136,7 +136,18 @@ INSERT INTO `image` (`id`, `lImage`, `format`, `dateAjout`, `idMenu`) VALUES
 (9, '../images/eveil.jpg', 'jpg', '2017-02-01', 11),
 (10, '../images/contact.jpg', 'jpg', '2017-02-01', 17),
 (11, '../images/page2.jpg', 'jpg', '2017-02-01', 1),
-(12, '../images/page3.jpg', 'jpg', '2017-02-01', 1);
+(12, '../images/page3.jpg', 'jpg', '2017-02-01', 1),
+(13, '../images/GIMG_4207.jpg', 'jpg', '2017-02-27', 15),
+(14, '../images/GIMG_4217.jpg', 'jpg', '2017-02-27', 15),
+(15, '../images/GIMG_4226.jpg', 'jpg', '2017-02-27', 15),
+(16, '../images/GIMG_4231.jpg', 'jpg', '2017-02-27', 15),
+(17, '../images/GIMG_4237.jpg', 'jpg', '2017-02-27', 15),
+(18, '../images/GIMG_4240.jpg', 'jpg', '2017-02-27', 15),
+(19, '../images/GIMG_4241.jpg', 'jpg', '2017-02-27', 15),
+(20, '../images/GIMG_4242.jpg', 'jpg', '2017-02-27', 15),
+(21, '../images/GIMG_4243.jpg', 'jpg', '2017-02-27', 15),
+(22, '../images/GIMG_4257.jpg', 'jpg', '2017-02-27', 15),
+(23, '../images/GIMG_4292.jpg', 'jpg', '2017-02-27', 15);
 
 -- --------------------------------------------------------
 

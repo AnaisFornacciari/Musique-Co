@@ -35,6 +35,7 @@
         position: fixed;
 		top: 30%;
 		right: 0;
+        z-index:4;
     }
 </style>
 <div class="containerMessage">

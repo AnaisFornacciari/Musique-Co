@@ -7,7 +7,7 @@
       if($app['couteauSuisse']->estConnecte())
       {
         ?> <div class="pull-right">
-          <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a href="modifierPied/<?php echo $leContenu['id'] ?>" title="ModifierPied"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <?php
       }?>

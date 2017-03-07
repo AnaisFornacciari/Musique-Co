@@ -23,16 +23,8 @@
         {
           $class = "item";
         }
-        if(isset($routeImage) && $routeImage == 1) // modifie la route de l'image pour la première visite afin de se positionner dans le bon dossier (on est pas encore dans "../public")
-        {
-          $lienImage = str_replace("..", "../public", $image['lImage']); //remplace l'occurence ".." par "../public" dans la variable : $image['lImage']
-        }
-        else
-        {
-          $lienImage = $image['lImage'];
-        }
         ?> <div class="<?php echo $class ?>">
-            <img src="<?php echo $lienImage ?>" alt="Musique&Co">
+            <img src="<?php echo $image['lImage'] ?>" alt="Musique&Co">
             <div class="carousel-caption">
               <h3><?php echo  $leContenu['titre'] ?></h3>
               <p><?php echo  $leContenu['leContenu'] ?></p>

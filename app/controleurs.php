@@ -87,7 +87,6 @@ Class ControleurConnexionAdmin
             $menu = $this->pdo->getInfoMenu(1);
             $message = $this->pdo->getMessage();
             $nomDuMenu = $menu['nomMenu'];
-            $routeImage = 1;        //pour la route de l'image lors de la première visite sur le site ou après connexion + (../public)
             require_once __DIR__.'/../vues/v_entete.php';
             require_once __DIR__.'/../vues/v_bandeau.php';
             require_once __DIR__.'/../vues/v_message.php';

@@ -10,6 +10,17 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        
+        <meta name="keywords" content="opensource rich wysiwyg text editor jquery bootstrap execCommand html5" />
+        <meta name="description" content="This tiny jQuery Bootstrap WYSIWYG plugin turns any DIV into a HTML5 rich text editor" />
+        <script src="../bootstrap-wysiwyg.js"></script>
+        <script src="../external/jquery.hotkeys.js"></script>
+        <link href="../external/google-code-prettify/prettify.css" rel="stylesheet">
+        <script src="../external/google-code-prettify/prettify.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+
         <style>
             @media screen and (max-width: 480px) {
             body {
@@ -228,7 +239,33 @@
             max-height : 240px;
             overflow:scroll;
             }
-            element.style { position:relative; }
+            #editor {
+            max-height: 250px;
+            height: 250px;
+            background-color: white;
+            border-collapse: separate; 
+            border: 1px solid rgb(204, 204, 204); 
+            padding: 4px; 
+            box-sizing: content-box; 
+            -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+            box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+            border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px; border-top-left-radius: 3px;
+            overflow: scroll;
+            outline: none;
+            }
+            #voiceBtn {
+            width: 20px;
+            color: transparent;
+            background-color: transparent;
+            transform: scale(2.0, 2.0);
+            -webkit-transform: scale(2.0, 2.0);
+            -moz-transform: scale(2.0, 2.0);
+            border: transparent;
+            cursor: pointer;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            }
         </style>
 
     </head>
@@ -244,15 +281,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>                        
                 </button>
-                <?php
-                    $monUrl = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                    if(substr($monUrl, 35, 9) == "afficher/")
-                    { $route = null; }
-                    else
-                    { $route = "afficher/"; }
-                    $id = 1;
-                ?>
-                <a class="navbar-brand" href="<?php echo $route.$id ?>">Musique & Co</a>
+                <?php $id = 1; ?>
+                <a class="navbar-brand" href="afficher-<?php echo $id ?>">Musique And Co</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -270,7 +300,7 @@
                                 $classement = $leMenu['classement'];
                                 if(!$sousMenu)
                                 {
-                                    ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
+                                    ?> <li><a href="afficher-<?php echo $id ?>" title="<?php echo  $nomMenu ?>"><?php echo  $nomMenu ?></a></li> <?php
                                 }
                                 else
                                 {
@@ -284,7 +314,7 @@
                                             $id = $leSousMenu['id'];
                                             $nomSousMenu = $leSousMenu['nomSousMenu'];
                                             $classement = $leSousMenu['classement'];
-                                            ?> <li><a href="<?php echo $route.$id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php //route paramétrée avec l'id du menu
+                                            ?> <li><a href="afficher-<?php echo $id ?>" title="<?php echo  $nomSousMenu ?>"><?php echo  $nomSousMenu ?></a></li> <?php //route paramétrée avec l'id du menu
                                         } ?>
                                         </ul>
                                     </li>

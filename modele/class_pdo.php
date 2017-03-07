@@ -50,6 +50,13 @@ class PdoMC
         return PdoMC::$monPdoMC;  
     }
     
+    public static function getPied()
+    {
+        $req = "select * from pied";
+        $res = PdoMC::$monPdo->query($req);
+        $ligne = $res->fetch();
+        return $ligne;
+    }
     public static function getMenus()
     {
         $req = "select * from menu order by classement;";

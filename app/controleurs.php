@@ -32,6 +32,7 @@ Class ControleurStart
         $LesImages = $this->pdo->getImages(1);
         $menu = $this->pdo->getInfoMenu(1);
         $message = $this->pdo->getMessage();
+        $pied = $this->pdo->getPied();
         $nomDuMenu = $menu['nomMenu'];
         $routeImage = 1;        //pour la route de l'image lors de la première visite sur le site + (../public)
         require_once __DIR__.'/../vues/v_entete.php';
@@ -86,6 +87,7 @@ Class ControleurConnexionAdmin
             $LesImages = $this->pdo->getImages(1);
             $menu = $this->pdo->getInfoMenu(1);
             $message = $this->pdo->getMessage();
+            $pied = $this->pdo->getPied();
             $nomDuMenu = $menu['nomMenu'];
             require_once __DIR__.'/../vues/v_entete.php';
             require_once __DIR__.'/../vues/v_bandeau.php';
@@ -134,6 +136,7 @@ Class ControleurAffichage
         $message = $this->pdo->getMessage();
         $idMenu = $request->get('id');
         $menu = $this->pdo->getInfoMenu($idMenu);
+        $pied = $this->pdo->getPied();
         if(!isset($menu['nomSousMenu']))    //définis le nom du menu ou sous-menu
         {
             $nomDuMenu = $menu['nomMenu'];
@@ -241,7 +244,6 @@ Class ControleurActionsAdmin
         $menu = $this->pdo->getInfoMenu($idMenu);
         $nomDuMenu = $menu['nomMenu'];
         require_once __DIR__.'/../vues/v_modifierContenu.php';
-        require_once __DIR__.'/../vues/v_pied.php';
         $view = ob_get_clean();
         return $view;
     }

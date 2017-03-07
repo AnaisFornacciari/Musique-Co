@@ -3,11 +3,15 @@
 
   <div class="bg-1">
     <div class="container">
-      <p class="text-center"><span class="glyphicon glyphicon-map-marker"></span>10 avenue Dumont Aulnay-Sous-Bois, France<br>
-                            En transport : RER B arrêt Aulnay-Sous-Bois<br>
-                            En voiture : sortie Aulnay centre (Autoroute A3/A1)<br>
-                            Renseignements complémentaires : André <span class="glyphicon glyphicon-phone"></span> 06-71-78-29-30<br> 
-      </p>
+      <?php
+      if($app['couteauSuisse']->estConnecte())
+      {
+        ?> <div class="pull-right">
+          <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+        <?php
+      }?>
+      <p class="text-center"><?php echo $pied['contenu']; ?> </p>
     </div>
   </div>
 
@@ -38,7 +42,7 @@
     <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="Retour en haut">
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a><br><br>
-    <p>© 2011 - Musique And Co - Tous droits réservés</p> 
+    <p>© 2017 - Musique And Co - Tous droits réservés</p> 
   </footer>
 
   <script>

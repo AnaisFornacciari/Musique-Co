@@ -1,7 +1,6 @@
 <!-- Container -->
 <div id="band" class="container text-center">
-  <h3><?php echo  $nomDuMenu ?></h3>
-  <br>
+  <h3><b><?php echo  $nomDuMenu ?></b></h3>
   <?php foreach($LesContenus as $leContenu)
   {
     if($leContenu['id'] < 4) //ne pas afficher le contenu du carousel
@@ -13,7 +12,7 @@
       if($app['couteauSuisse']->estConnecte())
       {
         ?> <div class="pull-right">
-          <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="Modifier"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="ModifierContenu"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <?php
       }

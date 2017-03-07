@@ -1,11 +1,20 @@
 <!-- Container -->
 <div id="band" class="container text-center">
-  <h3><?php echo  $nomDuMenu ?></h3>
+  <h3><b><?php echo  $nomDuMenu ?></b></h3>
+  <br>
   <div class='row'>
     <?php foreach($LesContenus as $leContenu)
     {
       $contenu = $app['couteauSuisse']->truncate($leContenu['leContenu'], 400, '...', true); //tronque le contenu "news" si ce dernier dépasse les 400 caractères
       ?><div class="col-sm-4">
+        <?php
+        if($app['couteauSuisse']->estConnecte())
+        {
+          ?> <div class="pull-right">
+            <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="ModifierContenu"><span class="glyphicon glyphicon-pencil"></span></a>
+          </div>
+          <?php
+        }?>
         <p class="text-center"><strong><?php echo  $leContenu['titre'] ?></strong></p><br>
         <div>
           <p><?php echo $contenu ?></p>
@@ -21,6 +30,14 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <?php
+                  if($app['couteauSuisse']->estConnecte())
+                  {
+                    ?> <div class="pull-right">
+                      <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="ModifierContenu"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                    <?php
+                  }?>
                   <h4><?php echo  $nomDuMenu ?></h4>
                 </div>
                 <div class="modal-body">

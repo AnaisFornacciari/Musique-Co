@@ -24,7 +24,7 @@
 </script>
 <br><br>
 <div id="band" class="container text-center">
-  <h3><?php echo  $nomDuMenu ?></h3>
+  <h3><b><?php echo  $nomDuMenu ?></b></h3>
   <br>
         <div id="main_area">
                 <!-- Slider -->

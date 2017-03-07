@@ -1,7 +1,8 @@
 <!-- Container (Contact Section) -->
 <br><br>
 <div id="contact" class="container">
-  <h3 class="text-center"><?php echo  $nomDuMenu ?></h3>
+  <h3 class="text-center"><b><?php echo  $nomDuMenu ?></b></h3>
+  <br>
   <p class="text-center"><em>Et la musique fut !</em></p>
 
   <div class="row">

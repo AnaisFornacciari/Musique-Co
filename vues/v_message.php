@@ -40,6 +40,14 @@
 </style>
 <div class="containerMessage">
     <blockquote class="quote-box">
+      <?php
+      if($app['couteauSuisse']->estConnecte())
+      {
+        ?> <div class="pull-right">
+          <a href="modifierMessage/<?php echo $leContenu['id'] ?>" title="ModifierMessage"><span class="glyphicon glyphicon-pencil"></span></a>
+        </div>
+        <?php
+      }?>
       <p class="quotation-mark">
         “
       </p>
@@ -49,7 +57,7 @@
       <hr>
       <div class="blog-post-actions">
         <p class="blog-post-bottom pull-left">
-          La Team Musique&Co !
+          <?php echo $message['titre']; ?>
         </p>
         <p class="blog-post-bottom pull-right">
           <span class="glyphicon glyphicon-music"></span>

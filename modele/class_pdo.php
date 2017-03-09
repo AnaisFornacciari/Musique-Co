@@ -130,12 +130,20 @@ class PdoMC
         return $lesLignes;
     }
 
-    public static function getProf()
+    public static function getProfs()
     {
         $req = "select * from prof order by id";
         $res = PdoMC::$monPdo->query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
+    }
+
+    public static function getProf($idProf)
+    {
+        $req = "select * from prof where id = '$idProf'";
+        $res = PdoMC::$monPdo->query($req);
+        $ligne = $res->fetch();
+        return $ligne;
     }
 
     public static function getMessage()
@@ -158,16 +166,44 @@ class PdoMC
 
     public static function modifierContenu($idContenu, $titre, $leContenu)
     {
-        $req = PdoMC::$monPdo->prepare("update contenu set titre = :titre and leContenu :leContenu where id = '$idContenu'");
+        $req = PdoMC::$monPdo->prepare("update contenu set titre = :titre , leContenu :leContenu , dateModif = NOW() where id = '$idContenu'");
         $req->bindParam(':titre', $titre);
         $req->bindParam(':leContenu', $leContenu);
         // insertion d'une ligne
         $req->execute();
     }
 
+    public static function modifierProf($idProf, $nom, $prenom, $discipline, $image)
+    {
+        $req = PdoMC::$monPdo->prepare("update prof set nom = :nom , prenom :prenom , discipline = :discipline , image = :image , dateModif = NOW() where id = '$idProf'");
+        $req->bindParam(':nom', $nom);
+        $req->bindParam(':prenom', $prenom);
+        $req->bindParam(':discipline', $discipline);
+        $req->bindParam(':image', $image);
+        // insertion d'une ligne
+        $req->execute();
+    }
+
+    public static function modifierMessage($titre, $contenu)
+    {
+        $req = PdoMC::$monPdo->prepare("update message set titre = :titre , contenu :contenu , dateModif = NOW()");
+        $req->bindParam(':titre', $titre);
+        $req->bindParam(':libelle', $libelle);
+        // insertion d'une ligne
+        $req->execute();
+    }
+
+    public static function modifierPied($contenu)
+    {
+        $req = PdoMC::$monPdo->prepare("update pied set contenu = :contenu , dateModif = NOW()");
+        $req->bindParam(':contenu', $contenu);
+        // insertion d'une ligne
+        $req->execute();
+    }
+
     public static function modifierImage($idImage, $lImage)
     {
-        $req = PdoMC::$monPdo->prepare("update image set lImage = :lImage where id = '$idImage'");
+        $req = PdoMC::$monPdo->prepare("update image set lImage = :lImage , dateModif = NOW() where id = '$idImage'");
         $req->bindParam(':lImage', $lImage);
         // insertion d'une ligne
         $req->execute();

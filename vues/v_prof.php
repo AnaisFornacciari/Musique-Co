@@ -3,6 +3,17 @@
 <div id="band" class="container text-center">
   <h3><b><?php echo  $nomDuMenu ?></b></h3>
   <br>
+  <?php
+  if($app['couteauSuisse']->estConnecte())
+  {
+    ?>
+    <div class="pull-right">
+      <a href="ajouterProf" title="Ajouter un prof"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <br>
+    <?php
+  }
+  ?>
   <div class="row">
   <?php foreach($LesProfs as $leProf)
   {?>
@@ -11,7 +22,7 @@
       if($app['couteauSuisse']->estConnecte())
       {
         ?> <div class="pull-right">
-          <a href="modifierProf/<?php echo $leProf['id'] ?>" title="ModifierProf"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a href="modifierProf-<?php echo $leProf['id'] ?>" title="Modifier les informations du prof"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <?php
       }?>

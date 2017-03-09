@@ -1,6 +1,17 @@
 <!-- Container -->
 <div id="band" class="container text-center">
   <h3><b><?php echo  $nomDuMenu ?></b></h3>
+  <?php 
+  if($app['couteauSuisse']->estConnecte())
+  {
+    ?>
+    <div class="pull-right">
+      <a href="ajouterContenu-<?php echo $idMenu ?>" title="Ajouter une new"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <br>
+    <?php
+  }
+  ?>
   <br>
   <div class='row'>
     <?php foreach($LesContenus as $leContenu)
@@ -11,7 +22,7 @@
         if($app['couteauSuisse']->estConnecte())
         {
           ?> <div class="pull-right">
-            <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="ModifierContenu"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="modifierContenu-<?php echo $leContenu['id'] ?>" title="Modifier la new"><span class="glyphicon glyphicon-pencil"></span></a>
           </div>
           <?php
         }?>
@@ -34,7 +45,7 @@
                   if($app['couteauSuisse']->estConnecte())
                   {
                     ?> <div class="pull-right">
-                      <a href="modifierContenu/<?php echo $leContenu['id'] ?>" title="ModifierContenu"><span class="glyphicon glyphicon-pencil"></span></a>
+                      <a href="modifierContenu-<?php echo $leContenu['id'] ?>" title="ModifierContenu"><span class="glyphicon glyphicon-pencil"></span></a>
                     </div>
                     <?php
                   }?>

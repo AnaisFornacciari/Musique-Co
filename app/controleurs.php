@@ -163,7 +163,7 @@ Class ControleurAffichage
                 require_once __DIR__.'/../vues/v_texte.php';
                 break;
             case 'P':
-                $LesProfs = $this->pdo->getProf();
+                $LesProfs = $this->pdo->getProfs();
                 require_once __DIR__.'/../vues/v_message.php';
                 require_once __DIR__.'/../vues/v_prof.php';
                 break;
@@ -171,6 +171,7 @@ Class ControleurAffichage
                 $LesImages = $this->pdo->getImages($idMenu);
                 require_once __DIR__.'/../vues/v_message.php';
                 require_once __DIR__.'/../vues/v_galerie_photo.php';
+                require_once __DIR__.'/../vues/v_galerie_audio.php';
                 break;
             case 'N':
                 $LesContenus = $this->pdo->getNews($idMenu);
@@ -235,28 +236,135 @@ Class ControleurActionsAdmin
         require_once __DIR__.'/../vues/v_entete.php';
     }
 
-    public function modifierContenu(Request $request, Application $app)
+    public function ajouterContenu(Request $request, Application $app)
     {
         $this->init($app);
-        $idContenu = $request->get('id');echo $idContenu;
-        $leContenu = $this->pdo->getContenu($idContenu);
-        $idMenu = $this->pdo->getMenu($idContenu); //définir l'id du menu où on modifie le contenu afin d'y être redirigé
-        $menu = $this->pdo->getInfoMenu($idMenu);
-        $nomDuMenu = $menu['nomMenu'];
-        require_once __DIR__.'/../vues/v_modifierContenu.php';
+        require_once __DIR__.'/../vues/v_ajouter_modifierContenu.php';
         $view = ob_get_clean();
         return $view;
     }
 
-    public function validerModif(Request $request, Application $app)
+    public function ajouterProf(Request $request, Application $app)
+    {
+        $this->init($app);
+        require_once __DIR__.'/../vues/v_ajouter_modifierProf.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function ajouterImage(Request $request, Application $app)
+    {
+        $this->init($app);
+        require_once __DIR__.'/../vues/v_ajouterImage.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function ajouterVideo(Request $request, Application $app)
+    {
+        $this->init($app);
+        require_once __DIR__.'/../vues/v_ajouterVideo.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function ajouterAudio(Request $request, Application $app)
+    {
+        $this->init($app);
+        require_once __DIR__.'/../vues/v_ajouterAudio.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function modifierContenu(Request $request, Application $app)
+    {
+        $this->init($app);
+        $idContenu = $request->get('id');
+        $leContenu = $this->pdo->getContenu($idContenu);
+        $idMenu = $this->pdo->getMenu($idContenu);
+        $menu = $this->pdo->getInfoMenu($idMenu);
+        $nomDuMenu = $menu['nomMenu'];
+        require_once __DIR__.'/../vues/v_ajouter_modifierContenu.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function modifierProf(Request $request, Application $app)
+    {
+        $this->init($app);
+        $idProf = $request->get('id');
+        $leProf = $this->pdo->getProf($idProf);
+        require_once __DIR__.'/../vues/v_ajouter_modifierProf.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function modifierMessage(Application $app)
+    {
+        $this->init($app);
+        $message = $this->pdo->getMessage();
+        require_once __DIR__.'/../vues/v_modifierMessage.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function modifierPied(Application $app)
+    {
+        $this->init($app);
+        $pied = $this->pdo->getPied();
+        require_once __DIR__.'/../vues/v_modifierPied.php';
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function validerModifContenu(Request $request, Application $app)
     {
         $this->init($app);
         $idContenu = $request->get('idContenu');
-        $idMenu = $request->get('idMenu');
+        $idMenu = $this->pdo->getMenu($idContenu); //définir l'id du menu où on modifie le contenu afin d'y être redirigé
         $titre = htmlentities($request->get('titre'));
-	    $leContenu = htmlentities($request->get('leContenu'));
-        $this->pdo->modifierContenu($idContenu, $titre, $leContenu);
-        $app->redirect('/afficher/$idMenu');
+	    $contenu = htmlentities($request->get('contenu'));
+        var_dump($contenu);
+        $this->pdo->modifierContenu($idContenu, $titre, $contenu);
+        $app->redirect('/afficher-$idMenu');
+    }
+
+    public function validerModifProf(Request $request, Application $app)
+    {
+        $this->init($app);
+        $idProf = $request->get('idProf');
+        $nom = htmlentities($request->get('nom'));
+        $prenom = htmlentities($request->get('prenom'));
+        $discipline = htmlentities($request->get('discipline'));
+        $image = $request->get('image');
+        $this->pdo->modifierProf($idProf, $nom, $prenom, $discipline, "../public/images/profs/".$image);
+        $app->redirect('/afficher-13');
+    }
+
+    public function validerModifMessage(Request $request, Application $app)
+    {
+        $this->init($app);
+        $titre = htmlentities($request->get('titre'));
+	    $contenu = htmlentities($request->get('contenu'));
+        $this->pdo->modifierMessage($titre, $contenu);
+        $app->redirect('/afficher-1');
+    }
+
+    public function validerModifPied(Request $request, Application $app)
+    {
+        $this->init($app);
+	    $contenu = htmlentities($request->get('contenu'));
+        $this->pdo->modifierPied($contenu);
+        $app->redirect('/afficher-1');
+    }
+
+    public function modifierMenu(Application $app)
+    {
+        $this->init($app);
+        $lesMenus = $this->pdo->getMenus();
+        require_once __DIR__.'/../vues/v_modifierMenu.php';
+        $view = ob_get_clean();
+        return $view;
     }
 }
 ?>

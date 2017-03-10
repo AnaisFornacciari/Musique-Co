@@ -277,7 +277,6 @@
                 padding-top: -100px;
                 border-radius: 17px;
                 background-color: #f4511e;
-                margin-top: 25px;
                 color:white;
                 width: 300px;
                 box-shadow: 2px 2px 2px 2px #E0E0E0;
@@ -359,6 +358,11 @@
             &:hover {
                 color: #00f;
             }
+            }
+
+            .glyphicon-menu-right {
+                margin-left: -17px;
+                margin-bottom : 30px;
             }
 
             .table-add {

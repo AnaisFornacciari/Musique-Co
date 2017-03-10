@@ -409,9 +409,7 @@ Class ControleurActionsAdmin
         $discipline = htmlentities($request->get('discipline'));
         $image = $request->get('image');
         $this->pdo->modifierProf($idProf, $nom, $prenom, $discipline, "../public/images/profs/".$image);
-        $app->redirect('/musique&co/public/afficher-13');
-        $view = ob_get_clean();
-        return $view;
+        return $app->redirect('afficher-13');
     }
 
     public function validerModifMessage(Request $request, Application $app)

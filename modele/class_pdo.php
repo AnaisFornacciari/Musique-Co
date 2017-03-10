@@ -229,7 +229,7 @@ class PdoMC
 
     public static function modifierContenu($idContenu, $titre, $leContenu)
     {
-        $req = PdoMC::$monPdo->prepare("update contenu set titre = :titre , leContenu :leContenu , dateModif = NOW() where id = '$idContenu'");
+        $req = PdoMC::$monPdo->prepare("update contenu set titre = :titre , leContenu =:leContenu , dateModif = NOW() where id = '$idContenu'");
         $req->bindParam(':titre', $titre);
         $req->bindParam(':leContenu', $leContenu);
         // insertion d'une ligne
@@ -238,7 +238,7 @@ class PdoMC
 
     public static function modifierProf($idProf, $nom, $prenom, $discipline, $image)
     {
-        $req = PdoMC::$monPdo->prepare("update prof set nom = :nom , prenom :prenom , discipline = :discipline , image = :image , dateModif = NOW() where id = '$idProf'");
+        $req = PdoMC::$monPdo->prepare("update prof set nom =:nom , prenom = :prenom , discipline = :discipline , image = :image , dateModif = NOW() where id = '$idProf'");
         $req->bindParam(':nom', $nom);
         $req->bindParam(':prenom', $prenom);
         $req->bindParam(':discipline', $discipline);
@@ -249,7 +249,7 @@ class PdoMC
 
     public static function modifierMessage($titre, $contenu)
     {
-        $req = PdoMC::$monPdo->prepare("update message set titre = :titre , contenu :contenu , dateModif = NOW()");
+        $req = PdoMC::$monPdo->prepare("update message set titre = :titre , contenu =:contenu , dateModif = NOW()");
         $req->bindParam(':titre', $titre);
         $req->bindParam(':libelle', $libelle);
         // insertion d'une ligne

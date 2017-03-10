@@ -1,5 +1,5 @@
 <div class="containerMessage">
-    <button class="btn btn-primary" onclick="$('.quote-box').toggle();">Bouton</button>
+    <i class="glyphicon glyphicon-menu-right" onclick="$('.quote-box').toggle();"></i>
     <blockquote class="quote-box">
       <?php
       if($app['couteauSuisse']->estConnecte())

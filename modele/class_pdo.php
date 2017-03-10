@@ -130,6 +130,14 @@ class PdoMC
         return $lesLignes;
     }
 
+    public static function getAudios($idMenu)
+    {
+        $req = "select * from audio where idMenu = '$idMenu' order by id";
+        $res = PdoMC::$monPdo->query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
+
     public static function getProfs()
     {
         $req = "select * from prof order by id";
@@ -162,6 +170,61 @@ class PdoMC
         $req->execute();
         $ligne = $req->fetch();
         return $ligne;
+    }
+
+    public static function ajouterContenu($idMenu, $titre, $leContenu)
+    {
+        $req = PdoMC::$monPdo->prepare("insert into contenu (titre, leContenu, dateAjout, dateModif, idMenu) values ( :titre, :leContenu, NOW(), NOW(), '$idMenu' )");
+        $req->bindParam(':titre', $titre);
+        $req->bindParam(':leContenu', $leContenu);
+        // insertion d'une ligne
+        $req->execute();
+    }
+
+    public static function ajouterProf($nom, $prenom, $discipline, $image)
+    {
+        $req = PdoMC::$monPdo->prepare("insert into prof (nom, prenom, discipline, image, dateAjout, dateModif) values ( :nom, :prenom, :discipline, '$image', NOW(), NOW() )");
+        $req->bindParam(':nom', $nom);
+        $req->bindParam(':prenom', $prenom);
+        $req->bindParam(':discipline', $discipline);
+        // insertion d'une ligne
+        $req->execute();
+    }
+
+    public static function ajouterImage($idMenu, $image)
+    {
+        $req = "insert into image (lImage, dateAjout, idMenu) values ( '$image', NOW(), '$idMenu' )";
+        $res = PdoMC::$monPdo->query($req);
+    }
+
+    public static function ajouterAudio($idMenu, $audio)
+    {
+        $req = "insert into image (lien, dateAjout) values ( '$audio', NOW(), '$idMenu' )";
+        $res = PdoMC::$monPdo->query($req);
+    }
+
+    public static function supprimerContenu($idContenu)
+    {
+        $req = "delete from contenu where id = '$idContenu'";
+        $res = PdoMC::$monPdo->query($req);
+    }
+
+    public static function supprimerProf($idProf)
+    {
+        $req = "delete from prof where id = '$idProf'";
+        $res = PdoMC::$monPdo->query($req);
+    }
+
+    public static function supprimerImage($idImage)
+    {
+        $req = "delete from image where id = '$idImage'";
+        $res = PdoMC::$monPdo->query($req);
+    }
+
+    public static function supprimerAudio($idAudio)
+    {
+        $req = "delete from audio where id = '$idAudio'";
+        $res = PdoMC::$monPdo->query($req);
     }
 
     public static function modifierContenu($idContenu, $titre, $leContenu)

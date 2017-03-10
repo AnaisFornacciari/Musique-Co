@@ -238,24 +238,26 @@
         if (supportsAudio) {
             var index = 0,
                 playing = false,
-                mediaPath = '../audio/',
+                mediaPath = 'audios/',
                 extension = '',
-                tracks = [{
-                    "track": 1,
-                    "name": "Jack Daniels - Mike Stud",
-                    "length": "03:46",
-                    "file": "mikestud_jd"
-                }, {
-                    "track": 2,
-                    "name": "Illenium - With You (feat. Quinn XCII)",
-                    "length": "04:31",
-                    "file": "illenium_wy"
-                }, {
-                    "track": 3,
-                    "name": "Russ - 2 A.M.",
-                    "length": "05:02",
-                    "file": "russ_am"
-                }],
+                tracks = [
+                <?php
+                foreach($LesAudios as $audio)
+                {
+                    $pos = strripos($audio['lien'], "."); // retourne la position de la dernière occurrence '.'
+                    $long = strlen ($audio['lien']); // longueur de la chaine
+                    $p = $long - $pos;
+                    $lien = substr($audio['lien'], 0 , - $p); //tronque avant le dernier '.'
+                    ?>
+                    {
+                        "track": <?php echo $audio['id'] ?>,
+                        "name": "<?php echo $audio['titre'] ?>",
+                        "length": "03:46",
+                        "file": "<?php echo $lien ?>"
+                    },
+                    <?php
+                }?>
+                ],
                 trackCount = tracks.length,
                 npAction = $('#npAction'),
                 npTitle = $('#npTitle'),
@@ -327,7 +329,6 @@
 </script>
 
 <div class="container text-center">
-    <h3>AUDIOS</h3>
     <?php 
     if($app['couteauSuisse']->estConnecte())
     {
@@ -335,10 +336,10 @@
         <div class="pull-right">
         <a href="ajouterAudio" title="Ajouter une ou des photos"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
-        <br>
         <?php
     }
     ?>
+    <h3>AUDIOS</h3>
 </div>
 
 <div id="audios" class="container text-center">
@@ -360,13 +361,20 @@
             </div>
             <div id="plwrap">
                 <ul class="music" id="plList" style="padding:0">
-                    <li>
-                        <div class="plItem">
-                            <div class="plNum">01.</div>
-                            <div class="plTitle">Jack Daniels - Mike Stud</div>
-                            <div class="plLength">3:46</div>
-                        </div>
-                    </li>
+                    <?php
+                    foreach($LesAudios as $audio)
+                    {
+                        ?>
+                        <li>
+                            <div class="plItem">
+                                <div class="plNum"><?php echo $audio['id'] ?>.</div>
+                                <div class="plTitle"><?php echo $audio['titre'] ?></div>
+                                <div class="plLength">3:46</div>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>

@@ -53,6 +53,7 @@
 <script> 
     function resultat(){
         var contenu = document.getElementById("editor").value = document.getElementById("editor").innerHTML;
+        console.log("CACA",contenu);
     }
 </script>
 
@@ -119,8 +120,8 @@
             <?php 
         }?>
         <br>
-        <button type="submit" onclick="resultat();" class="btn btn-default pull-right" data-dismiss="modal">
+        <input type="submit" onclick="resultat();" class="btn btn-default pull-right" data-dismiss="modal">
             <span class="glyphicon glyphicon-ok"></span> Valider
-        </button>
+        </input>
     </form>
 </div>

@@ -38,7 +38,6 @@
     </div>
 
     <div id="photos" class="container text-center">
-        <h3> PHOTOS </h3>
         <?php 
         if($app['couteauSuisse']->estConnecte())
         {
@@ -46,10 +45,10 @@
             <div class="pull-right">
             <a href="ajouterPhoto" title="Ajouter une ou des photos"><span class="glyphicon glyphicon-plus"></span></a>
             </div>
-            <br>
             <?php
         }
         ?>
+        <h3> PHOTOS </h3>
         <br>
         <div id="main_area">
             <!-- Slider -->

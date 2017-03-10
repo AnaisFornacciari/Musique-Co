@@ -73,7 +73,7 @@
 <?php
 if(isset($idProf))
 {
-  $action = "validerModifProf".$idProf;
+  $action = "validerModifProf-".$idProf;
 }
 else
 {

@@ -34,7 +34,7 @@ Class ControleurStart
         $message = $this->pdo->getMessage();
         $pied = $this->pdo->getPied();
         $nomDuMenu = $menu['nomMenu'];
-        $routeImage = 1;        //pour la route de l'image lors de la première visite sur le site + (../public)
+        $idMenu = 1;
         require_once __DIR__.'/../vues/v_entete.php';
         require_once __DIR__.'/../vues/v_bandeau.php';
         require_once __DIR__.'/../vues/v_message.php';
@@ -169,6 +169,7 @@ Class ControleurAffichage
                 break;
             case 'G':
                 $LesImages = $this->pdo->getImages($idMenu);
+                $LesAudios = $this->pdo->getAudios($idMenu);
                 require_once __DIR__.'/../vues/v_message.php';
                 require_once __DIR__.'/../vues/v_galerie_photo.php';
                 require_once __DIR__.'/../vues/v_galerie_audio.php';
@@ -275,6 +276,50 @@ Class ControleurActionsAdmin
         $view = ob_get_clean();
         return $view;
     }
+    
+    public function supprimerContenu(Request $request, Application $app)
+    {
+        $this->init($app);
+        $idContenu = $request->get('id');
+        $this->pdo->supprimerContenu($idContenu);
+        $app->redirect('/musique&co/public/afficher-'.$idMenu);
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function supprimerProf(Request $request, Application $app)
+    {
+        $this->init($app);
+        $idProf = $request->get('id');
+        $this->pdo->supprimerProf($idProf);
+        $app->redirect('/musique&co/public/afficher-13');
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function supprimerImage(Request $request, Application $app)
+    {
+        $this->init($app);
+
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function supprimerVideo(Request $request, Application $app)
+    {
+        $this->init($app);
+
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function supprimerAudio(Request $request, Application $app)
+    {
+        $this->init($app);
+
+        $view = ob_get_clean();
+        return $view;
+    }
 
     public function modifierContenu(Request $request, Application $app)
     {
@@ -317,28 +362,56 @@ Class ControleurActionsAdmin
         return $view;
     }
 
+    public function validerAjoutContenu(Request $request, Application $app)
+    {
+        $this->init($app);
+        $idMenu = $request->get('id');
+        $titre = htmlentities($request->get('titre'));
+	    $contenu = htmlentities($request->get('contenu'));
+        $this->pdo->ajouterContenu($idMenu, $titre, $contenu);
+        $app->redirect('/musique&co/public/afficher-'.$idMenu);
+        $view = ob_get_clean();
+        return $view;
+    }
+
+    public function validerAjoutProf(Request $request, Application $app)
+    {
+        $this->init($app);
+        $nom = htmlentities($request->get('nom'));
+        $prenom = htmlentities($request->get('prenom'));
+        $discipline = htmlentities($request->get('discipline'));
+        $image = $request->get('image');
+        $this->pdo->ajouterProf($nom, $prenom, $discipline, "../public/images/profs/".$image);
+        $app->redirect('/musique&co/public/afficher-13');
+        $view = ob_get_clean();
+        return $view;
+    }
+
     public function validerModifContenu(Request $request, Application $app)
     {
         $this->init($app);
-        $idContenu = $request->get('idContenu');
+        $idContenu = $request->get('id');
         $idMenu = $this->pdo->getMenu($idContenu); //définir l'id du menu où on modifie le contenu afin d'y être redirigé
         $titre = htmlentities($request->get('titre'));
 	    $contenu = htmlentities($request->get('contenu'));
-        var_dump($contenu);
         $this->pdo->modifierContenu($idContenu, $titre, $contenu);
-        $app->redirect('/afficher-$idMenu');
+        $app->redirect('/afficher-'.$idMenu);
+        $view = ob_get_clean();
+        return $view;
     }
 
     public function validerModifProf(Request $request, Application $app)
     {
         $this->init($app);
-        $idProf = $request->get('idProf');
+        $idProf = $request->get('id');
         $nom = htmlentities($request->get('nom'));
         $prenom = htmlentities($request->get('prenom'));
         $discipline = htmlentities($request->get('discipline'));
         $image = $request->get('image');
         $this->pdo->modifierProf($idProf, $nom, $prenom, $discipline, "../public/images/profs/".$image);
-        $app->redirect('/afficher-13');
+        $app->redirect('/musique&co/public/afficher-13');
+        $view = ob_get_clean();
+        return $view;
     }
 
     public function validerModifMessage(Request $request, Application $app)
@@ -348,6 +421,8 @@ Class ControleurActionsAdmin
 	    $contenu = htmlentities($request->get('contenu'));
         $this->pdo->modifierMessage($titre, $contenu);
         $app->redirect('/afficher-1');
+        $view = ob_get_clean();
+        return $view;
     }
 
     public function validerModifPied(Request $request, Application $app)
@@ -356,6 +431,8 @@ Class ControleurActionsAdmin
 	    $contenu = htmlentities($request->get('contenu'));
         $this->pdo->modifierPied($contenu);
         $app->redirect('/afficher-1');
+        $view = ob_get_clean();
+        return $view;
     }
 
     public function modifierMenu(Application $app)

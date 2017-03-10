@@ -12,7 +12,16 @@ $app->match('/verifierAdmin', "ControleurConnexionAdmin::verifierAdmin"); //veri
 
 
 $app->match('/ajouterProf', "ControleurActionsAdmin::ajouterProf"); //ajouter un prof
-$app->match('/ajouterContenu', "ControleurActionsAdmin::ajouterContenu"); //ajouter un contenu dont l'id du menu est passé en paramètre
+$app->match('/ajouterContenu-{id}', "ControleurActionsAdmin::ajouterContenu"); //ajouter un contenu dont l'id du menu est passé en paramètre
+$app->match('/ajouterImage-{id}', "ControleurActionsAdmin::ajouterImage"); //ajouter une / des image(/s) dont l'id de la galerie est passé en paramètre
+$app->match('/ajouterVideo-{id}', "ControleurActionsAdmin::ajouterVideo"); //ajouter une / des vidéo(/s) dont l'id de la galerie est passé en paramètre
+$app->match('/ajouterAudio-{id}', "ControleurActionsAdmin::ajouterAudio"); //ajouter une / des musique(/s) dont l'id de la galerie est passé en paramètre
+
+$app->match('/supprimerProf-{id}', "ControleurActionsAdmin::supprimerProf"); //supprimer le prof dont l'id est passé en paramètre
+$app->match('/supprimerContenu-{id}', "ControleurActionsAdmin::supprimerContenu"); //supprimer le contenu dont l'id est passé en paramètre
+$app->match('/supprimerImage-{id}', "ControleurActionsAdmin::supprimerImage"); //supprimer une image dont l'id est passé en paramètre
+$app->match('/supprimerVideo-{id}', "ControleurActionsAdmin::supprimerVideo"); //supprimer une vidéo dont l'id est passé en paramètre
+$app->match('/supprimerAudio-{id}', "ControleurActionsAdmin::supprimerAudio"); //supprimer une musique dont l'id est passé en paramètre
 
 $app->match('/modifierContenu-{id}', "ControleurActionsAdmin::modifierContenu"); //modifier le contenu dont l'id est passé en paramètre
 $app->match('/modifierProf-{id}', "ControleurActionsAdmin::modifierProf"); //modifier le prof dont l'id est passé en paramètre
@@ -24,5 +33,13 @@ $app->match('/validerModifProf-{id}', "ControleurActionsAdmin::validerModifProf"
 $app->match('/validerModifPied', "ControleurActionsAdmin::validerModifPied"); //valider les modifications du pied
 $app->match('/validerModifMessage', "ControleurActionsAdmin::validerModifMessage"); //valider les modifications du message
 
-$app->match('/modifierMenu', "ControleurActionsAdmin::modifierMenu"); //modifier le pied
+$app->match('/validerAjoutContenu-{id}', "ControleurActionsAdmin::validerAjoutContenu"); //valider l'ajout du contenu
+$app->match('/validerAjoutProf', "ControleurActionsAdmin::validerAjoutProf"); //valider l'ajout du prof
+$app->match('/validerAjoutImage', "ControleurActionsAdmin::validerAjoutImage"); //valider l'ajout d'image(s)
+$app->match('/validerAjoutVideo', "ControleurActionsAdmin::validerAjoutVideo"); //valider l'ajout de vidéo(s)
+$app->match('/validerAjoutAudio', "ControleurActionsAdmin::validerAjoutAudio"); //valider l'ajout de musique(s)
+
+$app->match('/modifierMenu', "ControleurActionsAdmin::modifierMenu"); //modifier le menu
+
+$app->match('/archiverMenu-{id}', "ControleurActionsAdmin::archiverMenu"); //archiver le menu dont l'id est passé en paramètre
 ?>

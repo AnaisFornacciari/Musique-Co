@@ -1,11 +1,5 @@
-<script>
-    $('button').click(function(){
-    $('.quote-box').toggle();
-    });
-</script>
-
 <div class="containerMessage">
-    <button class="btn btn-primary">Bouton</button>
+    <button class="btn btn-primary" onclick="$('.quote-box').toggle();">Bouton</button>
     <blockquote class="quote-box">
       <?php
       if($app['couteauSuisse']->estConnecte())

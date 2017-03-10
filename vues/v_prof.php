@@ -1,8 +1,6 @@
 <!-- Container (The Band Section) -->
 <br><br>
 <div id="band" class="container text-center">
-  <h3><b><?php echo  $nomDuMenu ?></b></h3>
-  <br>
   <?php
   if($app['couteauSuisse']->estConnecte())
   {
@@ -10,10 +8,11 @@
     <div class="pull-right">
       <a href="ajouterProf" title="Ajouter un prof"><span class="glyphicon glyphicon-plus"></span></a>
     </div>
-    <br>
     <?php
   }
   ?>
+  <h3><b><?php echo  $nomDuMenu ?></b></h3>
+  <br>
   <div class="row">
   <?php foreach($LesProfs as $leProf)
   {?>
@@ -21,7 +20,12 @@
       <?php
       if($app['couteauSuisse']->estConnecte())
       {
-        ?> <div class="pull-right">
+        ?>
+        <div class="pull-right">
+          <a href="supprimerProf-<?php echo $leProf['id'] ?>" title="Supprimer le prof"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+        <br>
+        <div class="pull-right">
           <a href="modifierProf-<?php echo $leProf['id'] ?>" title="Modifier les informations du prof"><span class="glyphicon glyphicon-pencil"></span></a>
         </div>
         <?php

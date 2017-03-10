@@ -28,14 +28,6 @@ Class CouteauSuisse
         }
 
      /**
-     * Détruit la session active
-     */
-        public function deconnecter()
-        {
-            session_destroy();
-        }
-
-     /**
      * Tronque une chaine de caractère sans couper un mot avec une taille définis
      * string - La chaîne d'entrée.
      * max_length - Longueur maximale de la chaine retournée.

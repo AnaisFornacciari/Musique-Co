@@ -174,7 +174,7 @@ class PdoMC
 
     public static function ajouterContenu($idMenu, $titre, $leContenu)
     {
-        $req = PdoMC::$monPdo->prepare("insert into contenu (titre, leContenu, dateAjout, dateModif, idMenu) values ( :titre, :leContenu, NOW(), NOW(), '$idMenu' )");
+        $req = PdoMC::$monPdo->prepare("INSERT into contenu (titre, leContenu, dateAjout, dateModif, idMenu) values ( :titre, :leContenu, NOW(), NOW(), '$idMenu' )");
         $req->bindParam(':titre', $titre);
         $req->bindParam(':leContenu', $leContenu);
         // insertion d'une ligne
@@ -183,10 +183,13 @@ class PdoMC
 
     public static function ajouterProf($nom, $prenom, $discipline, $image)
     {
-        $req = PdoMC::$monPdo->prepare("insert into prof (nom, prenom, discipline, image, dateAjout, dateModif) values ( :nom, :prenom, :discipline, '$image', NOW(), NOW() )");
+        echo $nom.$prenom.$discipline.$image;
+        $req = PdoMC::$monPdo->prepare("INSERT INTO prof (nom, prenom, discipline, image, dateAjout, dateModif) INTO (:nom, :prenom, :discipline, :image, NOW(), NOW());");
+        echo $nom.$prenom.$discipline.$image;
         $req->bindParam(':nom', $nom);
         $req->bindParam(':prenom', $prenom);
         $req->bindParam(':discipline', $discipline);
+        $req->bindParam(':image', $image);
         // insertion d'une ligne
         $req->execute();
     }

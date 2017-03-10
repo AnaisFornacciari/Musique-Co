@@ -101,7 +101,6 @@ Class ControleurConnexionAdmin
 
     public function deconnexionAdmin(Application $app)
     {
-        $app['couteauSuisse']->deconnecter();
         $app['couteauSuisse']->Logout();
         return $app->redirect('index.php');       
     }
@@ -381,10 +380,12 @@ Class ControleurActionsAdmin
         $prenom = htmlentities($request->get('prenom'));
         $discipline = htmlentities($request->get('discipline'));
         $image = $request->get('image');
+        echo "affichage des données reçues".$nom.$prenom.$discipline.$image;
+        echo ("je vais rediriger je crois?");
+        // $this->pdo->ajouterProf($nom, $prenom, $discipline, $image);
         $this->pdo->ajouterProf($nom, $prenom, $discipline, "../public/images/profs/".$image);
-        $app->redirect('/musique&co/public/afficher-13');
-        $view = ob_get_clean();
-        return $view;
+        echo ("je redirige je crois?");
+        $app->redirect('afficher-13');
     }
 
     public function validerModifContenu(Request $request, Application $app)

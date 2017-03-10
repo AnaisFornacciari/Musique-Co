@@ -385,7 +385,7 @@ Class ControleurActionsAdmin
         // $this->pdo->ajouterProf($nom, $prenom, $discipline, $image);
         $this->pdo->ajouterProf($nom, $prenom, $discipline, "../public/images/profs/".$image);
         echo ("je redirige je crois?");
-        $app->redirect('afficher-13');
+        return $app->redirect('afficher-13');
     }
 
     public function validerModifContenu(Request $request, Application $app)

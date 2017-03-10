@@ -184,7 +184,7 @@ class PdoMC
     public static function ajouterProf($nom, $prenom, $discipline, $image)
     {
         echo $nom.$prenom.$discipline.$image;
-        $req = PdoMC::$monPdo->prepare("INSERT INTO prof (nom, prenom, discipline, image, dateAjout, dateModif) INTO (:nom, :prenom, :discipline, :image, NOW(), NOW());");
+        $req = PdoMC::$monPdo->prepare("INSERT INTO prof (nom, prenom, discipline, image, dateAjout, dateModif) VALUES (:nom, :prenom, :discipline, :image, NOW(), NOW());");
         echo $nom.$prenom.$discipline.$image;
         $req->bindParam(':nom', $nom);
         $req->bindParam(':prenom', $prenom);

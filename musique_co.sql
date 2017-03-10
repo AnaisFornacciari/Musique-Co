@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 02 Mars 2017 à 18:00
+-- Généré le :  Ven 10 Mars 2017 à 18:03
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -43,6 +43,29 @@ INSERT INTO `admin` (`id`, `login`, `mdp`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `audio`
+--
+
+CREATE TABLE `audio` (
+  `id` int(11) NOT NULL,
+  `lien` text,
+  `dateAjout` date DEFAULT NULL,
+  `idMenu` int(11) DEFAULT NULL,
+  `titre` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `audio`
+--
+
+INSERT INTO `audio` (`id`, `lien`, `dateAjout`, `idMenu`, `titre`) VALUES
+(1, 'mikestud_jd.mp3', '2017-02-28', 15, 'Jack Daniels - Mike Stud'),
+(2, 'illenium_wy.mp3', '2017-02-28', 15, 'Illenium - With You'),
+(3, 'russ_am.mp3', '2017-02-28', 15, 'Russ - 2.A.M');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `categorie`
 --
 
@@ -58,7 +81,6 @@ CREATE TABLE `categorie` (
 
 INSERT INTO `categorie` (`code`, `libelle`, `nbImages`) VALUES
 ('C', 'contact', '0'),
-('E', 'tarif', '1'),
 ('G', 'galerie', 'no limit'),
 ('N', 'news', '1'),
 ('P', 'prof', '1'),
@@ -104,7 +126,11 @@ INSERT INTO `contenu` (`id`, `titre`, `leContenu`, `dateAjout`, `dateModif`, `id
 (18, 'NEWS 2015', 'Le 12 septembre nous serons présents au Forum des associations prêts à répondre à  vos questions, vous informer et inscrire ceux qui le souhaitent !<br>\r\n\r\nA 14H démonstrations musicales effectuées par nos élèves.', '2015-01-01', '2017-01-31', 2),
 (19, 'Du nouveau cette rentrée !', 'RENTRÉE 2015 2016 ! Du nouveau chez Musique&Co : Cours de batterie.', '2015-09-01', '2017-01-31', 2),
 (20, 'Du repos ça vous dit ?', 'Vacances du lundi 29 février au dimanche 6 mars.<br>\r\nDernier cours : samedi 27 février<br>\r\nReprise : lundi 7 mars', '2016-01-01', '2017-01-31', 2),
-(21, 'Stage pour vous !', 'Stage piano et guitare blues : du 25 avril au 27 avril 2016. <br>\nTOUTES LES INFOS DANS LA RUBRIQUE STAGE \n', '2016-01-27', '2017-01-31', 2);
+(21, 'Stage pour vous !', 'Stage piano et guitare blues : du 25 avril au 27 avril 2016. <br>\nTOUTES LES INFOS DANS LA RUBRIQUE STAGE \n', '2016-01-27', '2017-01-31', 2),
+(22, 'Activités', '<div style="overflow-x:auto;">\r\n<table align="center">\r\n<tr>\r\n<td>Eveils musicals</td>\r\n<td>30€ /mois</td>\r\n</tr>\r\n<tr>\r\n<td>Cours</td>\r\n<td>65€ /mois</td>\r\n</tr>\r\n<tr>\r\n<td>Ateliers et jeux en groupe</td>\r\n<td>65€ /mois</td>\r\n</tr>\r\n</table>\r\n</div>', '2017-03-07', '2017-03-07', 12),
+(23, 'Remboursement', '<div style="overflow-x:auto;">\n<table align="center">\n<tr>\n<td>2eme membre de la même famille</td>\n<td>50€ /mois</td>\n</tr>\n<tr>\n<td>2eme instrument ou 2eme activité</td>\n<td>50€ /mois</td>\n</tr>\n</table>\n</div>', '2017-03-07', '2017-03-07', 12),
+(24, 'Inscription annuelle', '20€', '2017-03-07', '2017-03-07', 12),
+(25, '', 'En septembre si vous arrivez en cours de mois vous ne payez que les cours pris.<br>\r\nPas de cours perdus, si vous manquez un cours vous avez la possibilité de le rattraper.', '2017-03-07', '2017-03-07', 12);
 
 -- --------------------------------------------------------
 
@@ -115,7 +141,6 @@ INSERT INTO `contenu` (`id`, `titre`, `leContenu`, `dateAjout`, `dateModif`, `id
 CREATE TABLE `image` (
   `id` int(11) NOT NULL,
   `lImage` text,
-  `format` varchar(5) DEFAULT NULL,
   `dateAjout` date DEFAULT NULL,
   `idMenu` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -124,30 +149,31 @@ CREATE TABLE `image` (
 -- Contenu de la table `image`
 --
 
-INSERT INTO `image` (`id`, `lImage`, `format`, `dateAjout`, `idMenu`) VALUES
-(1, '../images/page1.jpg', 'jpg', '2017-02-01', 1),
-(2, '../images/news.jpg', 'jpg', '2017-02-01', 2),
-(3, '../images/cours.jpg', 'jpg', '2017-02-01', 4),
-(4, '../images/guitare.jpg', 'jpg', '2017-02-01', 5),
-(5, '../images/piano.jpg', 'jpg', '2017-02-01', 6),
-(6, '../images/batterie.jpg', 'jpg', '2017-02-01', 8),
-(7, '../images/atelier.jpg', 'jpg', '2017-02-01', 9),
-(8, '../images/stage.jpg', 'jpg', '2017-02-01', 10),
-(9, '../images/eveil.jpg', 'jpg', '2017-02-01', 11),
-(10, '../images/contact.jpg', 'jpg', '2017-02-01', 17),
-(11, '../images/page2.jpg', 'jpg', '2017-02-01', 1),
-(12, '../images/page3.jpg', 'jpg', '2017-02-01', 1),
-(13, '../images/GIMG_4207.jpg', 'jpg', '2017-02-27', 15),
-(14, '../images/GIMG_4217.jpg', 'jpg', '2017-02-27', 15),
-(15, '../images/GIMG_4226.jpg', 'jpg', '2017-02-27', 15),
-(16, '../images/GIMG_4231.jpg', 'jpg', '2017-02-27', 15),
-(17, '../images/GIMG_4237.jpg', 'jpg', '2017-02-27', 15),
-(18, '../images/GIMG_4240.jpg', 'jpg', '2017-02-27', 15),
-(19, '../images/GIMG_4241.jpg', 'jpg', '2017-02-27', 15),
-(20, '../images/GIMG_4242.jpg', 'jpg', '2017-02-27', 15),
-(21, '../images/GIMG_4243.jpg', 'jpg', '2017-02-27', 15),
-(22, '../images/GIMG_4257.jpg', 'jpg', '2017-02-27', 15),
-(23, '../images/GIMG_4292.jpg', 'jpg', '2017-02-27', 15);
+INSERT INTO `image` (`id`, `lImage`, `dateAjout`, `idMenu`) VALUES
+(1, '../public/images/page1.jpg', '2017-02-01', 1),
+(2, '../public/images/news.jpg', '2017-02-01', 2),
+(3, '../public/images/cours.jpg', '2017-02-01', 4),
+(4, '../public/images/guitare.jpg', '2017-02-01', 5),
+(5, '../public/images/piano.jpg', '2017-02-01', 6),
+(6, '../public/images/batterie.jpg', '2017-02-01', 8),
+(7, '../public/images/atelier.jpg', '2017-02-01', 9),
+(8, '../public/images/stage.jpg', '2017-02-01', 10),
+(9, '../public/images/eveil.jpg', '2017-02-01', 11),
+(10, '../public/images/contact.jpg', '2017-02-01', 17),
+(11, '../public/images/page2.jpg', '2017-02-01', 1),
+(12, '../public/images/page3.jpg', '2017-02-01', 1),
+(13, '../public/images/GIMG_4207.jpg', '2017-02-27', 15),
+(14, '../public/images/GIMG_4217.jpg', '2017-02-27', 15),
+(15, '../public/images/GIMG_4226.jpg', '2017-02-27', 15),
+(16, '../public/images/GIMG_4231.jpg', '2017-02-27', 15),
+(17, '../public/images/GIMG_4237.jpg', '2017-02-27', 15),
+(18, '../public/images/GIMG_4240.jpg', '2017-02-27', 15),
+(19, '../public/images/GIMG_4241.jpg', '2017-02-27', 15),
+(20, '../public/images/GIMG_4242.jpg', '2017-02-27', 15),
+(21, '../public/images/GIMG_4243.jpg', '2017-02-27', 15),
+(22, '../public/images/GIMG_4257.jpg', '2017-02-27', 15),
+(23, '../public/images/GIMG_4292.jpg', '2017-02-27', 15),
+(24, '../public/images/tarif.jpg', '2017-03-07', 12);
 
 -- --------------------------------------------------------
 
@@ -181,7 +207,7 @@ INSERT INTO `menu` (`id`, `classement`, `nomMenu`, `nomSousMenu`, `sousMenu`, `c
 (9, 4, 'ATELIERS', NULL, 0, 'T', 1),
 (10, 5, 'STAGES', NULL, 0, 'T', 1),
 (11, 6, 'EVEIL', NULL, 0, 'T', 1),
-(12, 7, 'TARIFS', NULL, 0, 'E', 1),
+(12, 7, 'TARIFS', NULL, 0, 'T', 1),
 (13, 8, 'PROF', NULL, 0, 'P', 1),
 (14, 9, 'GALERIE', NULL, 1, 'G', 1),
 (15, 9, 'GALERIE', 'COURS / STAGES', 0, 'G', 1),
@@ -196,16 +222,36 @@ INSERT INTO `menu` (`id`, `classement`, `nomMenu`, `nomSousMenu`, `sousMenu`, `c
 
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
-  `libelle` text,
-  `dateModif` date DEFAULT NULL
+  `contenu` text,
+  `dateModif` date DEFAULT NULL,
+  `titre` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `message`
 --
 
-INSERT INTO `message` (`id`, `libelle`, `dateModif`) VALUES
-(1, 'Une bibliothèque avec des centaines de partitions, méthodes pour travailler dans tous les styles !', '2017-02-03');
+INSERT INTO `message` (`id`, `contenu`, `dateModif`, `titre`) VALUES
+(1, 'Une bibliothèque avec des centaines de partitions, méthodes pour travailler dans tous les styles !', '2017-03-07', 'La Team MusiqueAndCo!');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `pied`
+--
+
+CREATE TABLE `pied` (
+  `id` int(11) NOT NULL,
+  `contenu` text,
+  `dateModif` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `pied`
+--
+
+INSERT INTO `pied` (`id`, `contenu`, `dateModif`) VALUES
+(1, '<span class="glyphicon glyphicon-map-marker"></span>10 avenue Dumont Aulnay-Sous-Bois, France<br>\nEn transport : RER B arrêt Aulnay-Sous-Bois<br>\nEn voiture : sortie Aulnay centre (Autoroute A3/A1)<br>\nRenseignements complémentaires : <span class="glyphicon glyphicon-phone"></span> 06-71-78-29-30', '2017-03-07');
 
 -- --------------------------------------------------------
 
@@ -218,16 +264,18 @@ CREATE TABLE `prof` (
   `nom` varchar(30) DEFAULT NULL,
   `prenom` varchar(30) DEFAULT NULL,
   `discipline` text,
-  `image` text
+  `image` text,
+  `dateModif` date DEFAULT NULL,
+  `dateAjout` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `prof`
 --
 
-INSERT INTO `prof` (`id`, `nom`, `prenom`, `discipline`, `image`) VALUES
-(1, 'Fornacciari', 'Anaïs', 'Professeur de Piano', '../public/images/bandmember.jpg'),
-(2, 'Marcone', 'Enzo', 'Professeur de Piano', '../public/images/bandmember.jpg');
+INSERT INTO `prof` (`id`, `nom`, `prenom`, `discipline`, `image`, `dateModif`, `dateAjout`) VALUES
+(1, 'Fornacciari', 'Anaïs', 'Professeur de Piano', '../public/images/profs/bandmember.jpg', '2017-03-10', '2017-03-10'),
+(2, 'Marconee', 'Enzoo', 'Professeur de Piano', '../public/images/profs/bandmember.jpg', '2017-03-10', '2017-03-10');
 
 --
 -- Index pour les tables exportées
@@ -238,6 +286,13 @@ INSERT INTO `prof` (`id`, `nom`, `prenom`, `discipline`, `image`) VALUES
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `audio`
+--
+ALTER TABLE `audio`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idMenu` (`idMenu`);
 
 --
 -- Index pour la table `categorie`
@@ -273,14 +328,45 @@ ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `pied`
+--
+ALTER TABLE `pied`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `prof`
 --
 ALTER TABLE `prof`
   ADD PRIMARY KEY (`id`);
 
 --
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `audio`
+--
+ALTER TABLE `audio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT pour la table `contenu`
+--
+ALTER TABLE `contenu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT pour la table `image`
+--
+ALTER TABLE `image`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `audio`
+--
+ALTER TABLE `audio`
+  ADD CONSTRAINT `audio_ibfk_1` FOREIGN KEY (`idMenu`) REFERENCES `menu` (`id`);
 
 --
 -- Contraintes pour la table `contenu`

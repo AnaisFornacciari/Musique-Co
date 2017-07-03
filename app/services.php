@@ -28,6 +28,7 @@ Class CouteauSuisse
         }
 
      /**
+<<<<<<< HEAD
      * Détruit la session active
      */
         public function Logout()
@@ -44,6 +45,8 @@ Class CouteauSuisse
         }
 
      /**
+=======
+>>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
      * Tronque une chaine de caractère sans couper un mot avec une taille définis
      * string - La chaîne d'entrée.
      * max_length - Longueur maximale de la chaine retournée.

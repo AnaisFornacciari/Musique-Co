@@ -102,7 +102,10 @@ Class ControleurConnexionAdmin
 
     public function deconnexionAdmin(Application $app)
     {
+<<<<<<< HEAD
         session_start();
+=======
+>>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
         $app['couteauSuisse']->Logout();
         return $app->redirect('index.php');       
     }
@@ -380,9 +383,18 @@ Class ControleurActionsAdmin
         $nom = htmlentities($request->get('nom'));
         $prenom = htmlentities($request->get('prenom'));
         $discipline = htmlentities($request->get('discipline'));
+<<<<<<< HEAD
         $image = htmlentities($request->get('image'));
         $this->pdo->ajouterProf($nom, $prenom, $discipline, "../public/images/profs/".$image);
         ob_get_clean();
+=======
+        $image = $request->get('image');
+        echo "affichage des données reçues".$nom.$prenom.$discipline.$image;
+        echo ("je vais rediriger je crois?");
+        // $this->pdo->ajouterProf($nom, $prenom, $discipline, $image);
+        $this->pdo->ajouterProf($nom, $prenom, $discipline, "../public/images/profs/".$image);
+        echo ("je redirige je crois?");
+>>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
         return $app->redirect('afficher-13');
     }
 
@@ -407,7 +419,10 @@ Class ControleurActionsAdmin
         $discipline = htmlentities($request->get('discipline'));
         $image = $request->get('image');
         $this->pdo->modifierProf($idProf, $nom, $prenom, $discipline, "../public/images/profs/".$image);
+<<<<<<< HEAD
         ob_get_clean();
+=======
+>>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
         return $app->redirect('afficher-13');
     }
 

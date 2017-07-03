@@ -30,9 +30,17 @@ Class CouteauSuisse
      /**
      * Détruit la session active
      */
-        public function deconnecter()
+        public function Logout()
         {
-            session_destroy();
+            $_SESSION = array ();
+            if (ini_get ( "session.use_cookies" ))
+            {
+                $params = session_get_cookie_params ();
+                setcookie ( session_name (), '', time () - 42000, $params ["path"], $params ["domain"], $params ["secure"], $params ["httponly"] );
+            }
+            session_destroy ();
+            session_start();
+            $_SESSION ['result'] = " ";
         }
 
      /**
@@ -57,18 +65,6 @@ Class CouteauSuisse
             return substr_replace($string, $replacement, $max_length);
         }
 
-        function Logout()
-        {
-            $_SESSION = array ();
-            if (ini_get ( "session.use_cookies" ))
-            {
-                $params = session_get_cookie_params ();
-                setcookie ( session_name (), '', time () - 42000, $params ["path"], $params ["domain"], $params ["secure"], $params ["httponly"] );
-            }
-            session_destroy ();
-            session_start ();
-            $_SESSION ['result'] = " ";
-        }
 }
 
 /*------------------------Fin classe---------------------------*/

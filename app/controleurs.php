@@ -88,6 +88,7 @@ Class ControleurConnexionAdmin
             $menu = $this->pdo->getInfoMenu(1);
             $message = $this->pdo->getMessage();
             $pied = $this->pdo->getPied();
+            $idMenu = 1;
             $nomDuMenu = $menu['nomMenu'];
             require_once __DIR__.'/../vues/v_entete.php';
             require_once __DIR__.'/../vues/v_bandeau.php';
@@ -101,7 +102,7 @@ Class ControleurConnexionAdmin
 
     public function deconnexionAdmin(Application $app)
     {
-        $app['couteauSuisse']->deconnecter();
+        session_start();
         $app['couteauSuisse']->Logout();
         return $app->redirect('index.php');       
     }
@@ -292,9 +293,8 @@ Class ControleurActionsAdmin
         $this->init($app);
         $idProf = $request->get('id');
         $this->pdo->supprimerProf($idProf);
-        $app->redirect('/musique&co/public/afficher-13');
-        $view = ob_get_clean();
-        return $view;
+        ob_get_clean();
+        return $app->redirect('afficher-13');
     }
 
     public function supprimerImage(Request $request, Application $app)
@@ -369,7 +369,7 @@ Class ControleurActionsAdmin
         $titre = htmlentities($request->get('titre'));
 	    $contenu = htmlentities($request->get('contenu'));
         $this->pdo->ajouterContenu($idMenu, $titre, $contenu);
-        $app->redirect('/musique&co/public/afficher-'.$idMenu);
+        $app->redirect('afficher-'.$idMenu);
         $view = ob_get_clean();
         return $view;
     }
@@ -380,11 +380,10 @@ Class ControleurActionsAdmin
         $nom = htmlentities($request->get('nom'));
         $prenom = htmlentities($request->get('prenom'));
         $discipline = htmlentities($request->get('discipline'));
-        $image = $request->get('image');
+        $image = htmlentities($request->get('image'));
         $this->pdo->ajouterProf($nom, $prenom, $discipline, "../public/images/profs/".$image);
-        $app->redirect('/musique&co/public/afficher-13');
-        $view = ob_get_clean();
-        return $view;
+        ob_get_clean();
+        return $app->redirect('afficher-13');
     }
 
     public function validerModifContenu(Request $request, Application $app)
@@ -393,11 +392,10 @@ Class ControleurActionsAdmin
         $idContenu = $request->get('id');
         $idMenu = $this->pdo->getMenu($idContenu); //définir l'id du menu où on modifie le contenu afin d'y être redirigé
         $titre = htmlentities($request->get('titre'));
-	    $contenu = htmlentities($request->get('contenu'));
+	    $contenu = $request->get('contenuHtml');
         $this->pdo->modifierContenu($idContenu, $titre, $contenu);
-        $app->redirect('/afficher-'.$idMenu);
-        $view = ob_get_clean();
-        return $view;
+        ob_get_clean();
+        return $app->redirect('afficher-'.$idMenu);
     }
 
     public function validerModifProf(Request $request, Application $app)
@@ -409,9 +407,8 @@ Class ControleurActionsAdmin
         $discipline = htmlentities($request->get('discipline'));
         $image = $request->get('image');
         $this->pdo->modifierProf($idProf, $nom, $prenom, $discipline, "../public/images/profs/".$image);
-        $app->redirect('/musique&co/public/afficher-13');
-        $view = ob_get_clean();
-        return $view;
+        ob_get_clean();
+        return $app->redirect('afficher-13');
     }
 
     public function validerModifMessage(Request $request, Application $app)

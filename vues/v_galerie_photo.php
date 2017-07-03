@@ -49,7 +49,6 @@
         }
         ?>
         <h3> PHOTOS </h3>
-        <br>
         <div id="main_area">
             <!-- Slider -->
             <div class="row">

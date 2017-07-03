@@ -52,8 +52,7 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <script> 
     function resultat(){
-        var contenu = document.getElementById("editor").value = document.getElementById("editor").innerHTML;
-        console.log("CACA",contenu);
+        document.getElementById("newEditor").value = document.getElementById("editor").innerHTML;
     }
 </script>
 
@@ -120,7 +119,7 @@
             <?php 
         }?>
         <br>
-        <input type="submit" onclick="resultat();" class="btn btn-default pull-right" data-dismiss="modal">
+        <input type="submit" id="newEditor" name="contenuHtml" value="" onclick="resultat();" class="btn btn-default pull-right" data-dismiss="modal">
             <span class="glyphicon glyphicon-ok"></span> Valider
         </input>
     </form>

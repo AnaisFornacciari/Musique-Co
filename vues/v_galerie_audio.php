@@ -213,7 +213,10 @@
     .music{
     max-height : 300px;
     overflow-y:scroll;
-    } 
+    }
+    .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+        display:inline;
+    }
 </style>
 
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
@@ -328,7 +331,7 @@
     });
 </script>
 
-<div class="container text-center">
+<div class="text-center">
     <?php 
     if($app['couteauSuisse']->estConnecte())
     {
@@ -342,7 +345,7 @@
     <h3>AUDIOS</h3>
 </div>
 
-<div id="audios" class="container text-center">
+<div id="audios" class="container text-center" style="padding:0;">
 
     <div class="column add-bottom">
         <div id="mainwrap">

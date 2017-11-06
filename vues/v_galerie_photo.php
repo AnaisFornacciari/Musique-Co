@@ -37,7 +37,7 @@
         <h3><b><?php echo  $nomDuMenu ?></b></h3>
     </div>
 
-    <div id="photos" class="container text-center">
+    <div id="photos" class="container text-center" style="width:100%;">
         <?php 
         if($app['couteauSuisse']->estConnecte())
         {

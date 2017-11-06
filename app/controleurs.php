@@ -2,7 +2,6 @@
 require_once __DIR__.'/../modele/class_pdo.php';
 use Symfony\Component\HttpFoundation\Request;
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Response;
 
 //**************************************Contrôleur de première visite*****************//
 Class ControleurStart
@@ -88,6 +87,7 @@ Class ControleurConnexionAdmin
             $menu = $this->pdo->getInfoMenu(1);
             $message = $this->pdo->getMessage();
             $pied = $this->pdo->getPied();
+            $idMenu = 1;
             $nomDuMenu = $menu['nomMenu'];
             require_once __DIR__.'/../vues/v_entete.php';
             require_once __DIR__.'/../vues/v_bandeau.php';
@@ -198,28 +198,6 @@ Class ControleurActionsAdmin
     private $idAdmin;
     private $login;
     private $email;
-
-    // public function init(Application $app)
-    // {
-    //     $this->pdo = PdoMC::getPdoMC();
-    //     session_start();
-    //     if($app['couteauSuisse']->estConnecte())
-    //     {
-    //         $this->idAdmin = $_SESSION['idAdmin'];
-    //         $this->login = $_SESSION['login'];
-    //         $this->email = $_SESSION['email'];
-    //         ob_start();             // démarre le flux de sortie
-    //         $LesMenus = $this->pdo->getMenus();
-    //         require_once __DIR__.'/../vues/v_entete.php';
-    //     }
-    //     else
-    //     {
-    //         ob_start();             // démarre le flux de sortie
-    //         $response = new response ();
-    //         $response->setContent ( 'Connexion nécessaire' );
-    //         return $response;
-    //     }
-    // }
 
     public function init(Application $app)
     {

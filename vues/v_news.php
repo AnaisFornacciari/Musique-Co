@@ -1,5 +1,10 @@
 <!-- Container -->
-<div id="band" class="container text-center">
+<style>
+    .item {
+        height: 50%;
+    }
+</style>
+<div id="band" class="container">
 <?php
   if($app['couteauSuisse']->estConnecte())
   {
@@ -10,13 +15,13 @@
     <?php
   }
   ?>
-  <h3><b><?php echo  $nomDuMenu ?></b></h3>
+  <h3 class="text-center"><b><?php echo  $nomDuMenu ?></b></h3>
   <br>
   <div class='row'>
     <?php foreach($LesContenus as $leContenu)
     {
-      $contenu = $app['couteauSuisse']->truncate($leContenu['leContenu'], 400, '...', true); //tronque le contenu "news" si ce dernier dépasse les 400 caractères
-      ?><div class="col-sm-4">
+      $contenu = $app['couteauSuisse']->truncate($leContenu['leContenu'], 150, '...', true); //tronque le contenu "news" si ce dernier dépasse les 400 caractères
+      ?><div class="col-sm-3 item">
         <?php
         if($app['couteauSuisse']->estConnecte())
         {
@@ -30,11 +35,11 @@
           </div>
           <?php
         }?>
-        <p class="text-center"><strong><?php echo  $leContenu['titre'] ?></strong></p><br>
+        <p><strong><?php echo  $leContenu['titre'] ?></strong></p><br>
         <div>
           <p><?php echo $contenu ?></p>
         </div><?php 
-        if(strlen($leContenu['leContenu']) > 400) //si le contenu dépasse les 400 caractères : "Lire la suite..." + modal
+        if(strlen($leContenu['leContenu']) > 150) //si le contenu dépasse les 400 caractères : "Lire la suite..." + modal
         {
           ?> <div class="text-center"> <button class="btn" data-toggle="modal" data-target="#myModal-<?php echo $leContenu['id'] ?>">Lire la suite...</button> </div>
           <!-- Modal -->
@@ -56,7 +61,7 @@
                   <h4><?php echo  $nomDuMenu ?></h4>
                 </div>
                 <div class="modal-body">
-                  <center><h5><i> <?php echo $leContenu['titre'] ?> </i></h5></center>
+                  <h5><i> <?php echo $leContenu['titre'] ?> </i></h5>
                   <p> <?php echo $leContenu['leContenu'] ?> </p>
                 </div>
                 <div class="modal-footer">

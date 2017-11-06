@@ -28,25 +28,6 @@ Class CouteauSuisse
         }
 
      /**
-<<<<<<< HEAD
-     * Détruit la session active
-     */
-        public function Logout()
-        {
-            $_SESSION = array ();
-            if (ini_get ( "session.use_cookies" ))
-            {
-                $params = session_get_cookie_params ();
-                setcookie ( session_name (), '', time () - 42000, $params ["path"], $params ["domain"], $params ["secure"], $params ["httponly"] );
-            }
-            session_destroy ();
-            session_start();
-            $_SESSION ['result'] = " ";
-        }
-
-     /**
-=======
->>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
      * Tronque une chaine de caractère sans couper un mot avec une taille définis
      * string - La chaîne d'entrée.
      * max_length - Longueur maximale de la chaine retournée.
@@ -68,6 +49,18 @@ Class CouteauSuisse
             return substr_replace($string, $replacement, $max_length);
         }
 
+        function Logout()
+        {
+            $_SESSION = array ();
+            if (ini_get ( "session.use_cookies" ))
+            {
+                $params = session_get_cookie_params ();
+                setcookie ( session_name (), '', time () - 42000, $params ["path"], $params ["domain"], $params ["secure"], $params ["httponly"] );
+            }
+            session_destroy ();
+            session_start ();
+            $_SESSION ['result'] = " ";
+        }
 }
 
 /*------------------------Fin classe---------------------------*/

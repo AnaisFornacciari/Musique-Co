@@ -71,7 +71,7 @@ class PdoMC
         $req->bindParam(':id', $idContenu);
         $req->execute();
         $ligne = $req->fetch();
-        return $ligne['idMenu'];
+        return $ligne;
     }
 
     public static function getSousMenus($nomMenu)
@@ -183,13 +183,9 @@ class PdoMC
 
     public static function ajouterProf($nom, $prenom, $discipline, $image)
     {
-<<<<<<< HEAD
-        $req = PdoMC::$monPdo->prepare("insert into prof (nom, prenom, discipline, image, dateAjout, dateModif) values ( :nom, :prenom, :discipline, :image, NOW(), NOW() )");
-=======
         echo $nom.$prenom.$discipline.$image;
         $req = PdoMC::$monPdo->prepare("INSERT INTO prof (nom, prenom, discipline, image, dateAjout, dateModif) VALUES (:nom, :prenom, :discipline, :image, NOW(), NOW());");
         echo $nom.$prenom.$discipline.$image;
->>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
         $req->bindParam(':nom', $nom);
         $req->bindParam(':prenom', $prenom);
         $req->bindParam(':discipline', $discipline);
@@ -236,11 +232,7 @@ class PdoMC
 
     public static function modifierContenu($idContenu, $titre, $leContenu)
     {
-<<<<<<< HEAD
-        $req = PdoMC::$monPdo->prepare("update contenu set titre = :titre , leContenu = :leContenu , dateModif = NOW() where id = '$idContenu'");
-=======
         $req = PdoMC::$monPdo->prepare("update contenu set titre = :titre , leContenu =:leContenu , dateModif = NOW() where id = '$idContenu'");
->>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
         $req->bindParam(':titre', $titre);
         $req->bindParam(':leContenu', $leContenu);
         // insertion d'une ligne
@@ -249,11 +241,7 @@ class PdoMC
 
     public static function modifierProf($idProf, $nom, $prenom, $discipline, $image)
     {
-<<<<<<< HEAD
-        $req = PdoMC::$monPdo->prepare("update prof set nom = :nom , prenom = :prenom , discipline = :discipline , image = :image , dateModif = NOW() where id = '$idProf'");
-=======
         $req = PdoMC::$monPdo->prepare("update prof set nom =:nom , prenom = :prenom , discipline = :discipline , image = :image , dateModif = NOW() where id = '$idProf'");
->>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
         $req->bindParam(':nom', $nom);
         $req->bindParam(':prenom', $prenom);
         $req->bindParam(':discipline', $discipline);
@@ -264,11 +252,7 @@ class PdoMC
 
     public static function modifierMessage($titre, $contenu)
     {
-<<<<<<< HEAD
-        $req = PdoMC::$monPdo->prepare("update message set titre = :titre , contenu = :contenu , dateModif = NOW()");
-=======
         $req = PdoMC::$monPdo->prepare("update message set titre = :titre , contenu =:contenu , dateModif = NOW()");
->>>>>>> 45e147b64a949249667f4d99ebef294419a5bbba
         $req->bindParam(':titre', $titre);
         $req->bindParam(':libelle', $libelle);
         // insertion d'une ligne

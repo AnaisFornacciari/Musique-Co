@@ -328,7 +328,7 @@
     });
 </script>
 
-<div id="audios" class="container text-center">
+<div class="container text-center">
     <?php 
     if($app['couteauSuisse']->estConnecte())
     {
@@ -340,6 +340,9 @@
     }
     ?>
     <h3>AUDIOS</h3>
+</div>
+
+<div id="audios" class="container text-center">
 
     <div class="column add-bottom">
         <div id="mainwrap">

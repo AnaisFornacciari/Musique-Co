@@ -107,15 +107,10 @@ else
     <div class="form-group col-sm-offset-4 col-sm-4">
       <label class="control-label" for="image">Image :</label>
       <input type="file" accept="image/*" class="file-loading" id="image" name ="image"> <br>
-  
-      <span class="glyphicon glyphicon-alert"></span> <br>
-      <p> Veillez à répertorier l'image dans le dossier de destination suivante : "../public/images/profs/"</p>
       <?php
       if(isset($idProf)) 
       { 
-        ?>
-        <p> (Si aucun lien n'est choisis, la photo restera la même que la précédente) </p>
-        <?php
+        ?> <p> <span class="glyphicon glyphicon-alert"></span> Si aucun lien n'est choisis, la photo restera la même que la précédente </p> <?php
       }
       ?>
     </div>

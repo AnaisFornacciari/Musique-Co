@@ -46,7 +46,9 @@
         headers.forEach(function (header, i) {
         h[header] = $td.eq(i).text();   
         });
+        
     });
+    
     });
 </script>
 <br>
@@ -63,7 +65,7 @@
     <li>Renouveler l'opération si vous souhaitez plusieurs sous menus</li>
   </ul>
   </li>
-<form>
+
   <div id="table" class="table-editable">
     <span class="table-add glyphicon glyphicon-plus"></span>
     <table class="table">
@@ -111,12 +113,11 @@
           <span class="table-remove glyphicon glyphicon-remove"></span>
         </td>
         <td>
-          <input type="submit"> <span class="table-up glyphicon glyphicon-arrow-up"></span> </input>
-          <input type="submit"> <span class="table-down glyphicon glyphicon-arrow-down"></span> </input>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
         </td>
       </tr>
     </table>
   </div>
   
-    </form>
 </div>

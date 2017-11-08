@@ -86,8 +86,6 @@
                                 </a>                                
                                 </div>
                         </div>
-
-                        
                     </div>
                 </div>
             </div><!--/Slider-->
@@ -98,7 +96,7 @@
                     <?php $numberSlide = 0;
                     foreach($LesImages as $image)
                     {
-                        ?><li class="col-sm-2">
+                        ?><li class="col-sm-3">
                             <a class="thumbnail" id="carousel-selector-<?php echo $numberSlide ?>"><img src="<?php echo $image['lImage'] ?>"></a>
                         </li><?php
                         $numberSlide++;
@@ -107,5 +105,3 @@
             </div>
         </div>
     </div>
-
-</div>

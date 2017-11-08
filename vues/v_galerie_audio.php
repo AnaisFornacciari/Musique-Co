@@ -7,28 +7,28 @@
     /* Desktop
     ================================================== */
 
-    .container { position:relative; margin:0 auto; width:700px; }
+    .a { position:relative; margin:0 auto; width:700px; }
     .column { width:inherit; }
 
     /* Tablet (Portrait)
     ================================================== */
 
     @media only screen and (min-width: 768px) and (max-width: 959px) {
-    .container { width:556px; }
+    .a { width:556px; }
     }
 
     /* Mobile (Portrait)
     ================================================== */
 
     @media only screen and (max-width: 767px) {
-    .container { width:300px; }
+    .a { width:300px; }
     }
 
     /* Mobile (Landscape)
     ================================================== */
 
     @media only screen and (min-width: 480px) and (max-width: 767px) {
-    .container { width:420px; }
+    .a { width:420px; }
     }
 
     * {
@@ -332,7 +332,7 @@
 </script>
 
 <div class="text-center">
-    <?php 
+    <?php
     if($app['couteauSuisse']->estConnecte())
     {
         ?>
@@ -347,38 +347,39 @@
 
 <div id="audios" class="container text-center" style="padding:0;">
 
-    <div class="column add-bottom">
-        <div id="mainwrap">
-            <div id="nowPlay">
-                <span class="left" id="npAction">Pause...</span>
-                <span class="right" id="npTitle"></span>
-            </div>
-            <div id="audiowrap">
-                <div id="audio0">
-                    <audio preload id="audio1" controls="controls">Votre navigateur ne supporte pas HTML5 Audio!</audio>
+        <div class="column add-bottom">
+            <div id="mainwrap">
+                <div id="nowPlay">
+                    <span class="left" id="npAction">Pause...</span>
+                    <span class="right" id="npTitle"></span>
                 </div>
-                <div id="tracks">
-                    <a id="btnPrev">&laquo;</a>
-                    <a id="btnNext">&raquo;</a>
+                <div id="audiowrap">
+                    <div id="audio0">
+                        <audio preload id="audio1" controls="controls">Votre navigateur ne supporte pas HTML5 Audio!</audio>
+                    </div>
+                    <div id="tracks">
+                        <a id="btnPrev">&laquo;</a>
+                        <a id="btnNext">&raquo;</a>
+                    </div>
                 </div>
-            </div>
-            <div id="plwrap">
-                <ul class="music" id="plList" style="padding:0">
-                    <?php
-                    foreach($LesAudios as $audio)
-                    {
-                        ?>
-                        <li>
-                            <div class="plItem">
-                                <div class="plNum"><?php echo $audio['id'] ?>.</div>
-                                <div class="plTitle"><?php echo $audio['titre'] ?></div>
-                                <div class="plLength">3:46</div>
-                            </div>
-                        </li>
+                <div id="plwrap">
+                    <ul class="music" id="plList" style="padding:0">
                         <?php
-                    }
-                    ?>
-                </ul>
+                        foreach($LesAudios as $audio)
+                        {
+                            ?>
+                            <li>
+                                <div class="plItem">
+                                    <div class="plNum"><?php echo $audio['id'] ?>.</div>
+                                    <div class="plTitle"><?php echo $audio['titre'] ?></div>
+                                    <div class="plLength">3:46</div>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

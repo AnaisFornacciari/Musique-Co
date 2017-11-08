@@ -67,10 +67,10 @@
                 border-color: #f1f1f1;
             }
 
-            /* image carousel */
+            /* Image carousel */
             .carousel-inner img {
                 -webkit-filter: grayscale(90%);
-                filter: grayscale(90%); /* mettre toutes les photos en noir et blanc */ 
+                filter: grayscale(90%); /* Mettre toutes les photos en noir et blanc */ 
                 width: 100%; /* Définir la largeur à 100% */
                 margin: auto;
             }
@@ -278,7 +278,6 @@
                 padding-top: -100px;
                 border-radius: 17px;
                 background-color: #f4511e;
-                margin-top: 25px;
                 color:white;
                 width: 300px;
                 box-shadow: 2px 2px 2px 2px #E0E0E0;
@@ -360,6 +359,12 @@
             &:hover {
                 color: #00f;
             }
+            }
+
+            .glyphicon-menu-right {
+                margin-left: -17px;
+                margin-bottom : 30px;
+                color : #f4511e;
             }
 
             .table-add {

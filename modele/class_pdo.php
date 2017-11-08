@@ -14,7 +14,7 @@
 class PdoMC
 {   		
     private static $serveur='mysql:host=localhost';
-    private static $bdd='dbname=musique&co';   		
+    private static $bdd='dbname=musique_co';
     private static $user='root' ;    		
     private static $mdp='root' ;	
     private static $monPdo;

@@ -7,28 +7,28 @@
     /* Desktop
     ================================================== */
 
-    .a { position:relative; margin:0 auto; width:700px; }
+    .container { position:relative; margin:0 auto; width:700px; }
     .column { width:inherit; }
 
     /* Tablet (Portrait)
     ================================================== */
 
     @media only screen and (min-width: 768px) and (max-width: 959px) {
-    .a { width:556px; }
+    .container { width:556px; }
     }
 
     /* Mobile (Portrait)
     ================================================== */
 
     @media only screen and (max-width: 767px) {
-    .a { width:300px; }
+    .container { width:300px; }
     }
 
     /* Mobile (Landscape)
     ================================================== */
 
     @media only screen and (min-width: 480px) and (max-width: 767px) {
-    .a { width:420px; }
+    .container { width:420px; }
     }
 
     * {
@@ -331,22 +331,23 @@
     });
 </script>
 
-<div class="text-center">
+
+<div id="audios" class="container text-center">
     <?php
     if($app['couteauSuisse']->estConnecte())
     {
         ?>
         <div class="pull-right">
-        <a href="ajouterAudio" title="Ajouter une ou des photos"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="ajouterAudio" title="Ajouter une ou des fichiers audio"><span class="glyphicon glyphicon-plus"></span></a>
         </div>
         <?php
     }
     ?>
     <h3>AUDIOS</h3>
-</div>
-
-<div id="audios" class="container text-center" style="padding:0;">
-
+    <?php
+    if(count($LesAudios) != 0)
+    {
+        ?>
         <div class="column add-bottom">
             <div id="mainwrap">
                 <div id="nowPlay">
@@ -382,5 +383,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    <?php
+    }
+    else
+    {
+        ?><div class="container text-center"> Aucun fichier audio... </div><?php
+    }
+    ?>
 </div>

@@ -71,7 +71,7 @@ class PdoMC
         $req->bindParam(':id', $idContenu);
         $req->execute();
         $ligne = $req->fetch();
-        return $ligne;
+        return $ligne['idMenu'];
     }
 
     public static function getSousMenus($nomMenu)
@@ -250,11 +250,22 @@ class PdoMC
         $req->execute();
     }
 
+    public static function modifierProfSansImage($idProf, $nom, $prenom, $discipline)
+    {
+        $req = PdoMC::$monPdo->prepare("update prof set nom =:nom , prenom = :prenom , discipline = :discipline , dateModif = NOW() where id = '$idProf'");
+        $req->bindParam(':nom', $nom);
+        $req->bindParam(':prenom', $prenom);
+        $req->bindParam(':discipline', $discipline);
+        // insertion d'une ligne
+        $req->execute();
+    }
+
     public static function modifierMessage($titre, $contenu)
     {
-        $req = PdoMC::$monPdo->prepare("update message set titre = :titre , contenu =:contenu , dateModif = NOW()");
+        $req = PdoMC::$monPdo->prepare("update message set titre = :titre , contenu = :contenu , dateModif = NOW()");
+        echo($contenu);
         $req->bindParam(':titre', $titre);
-        $req->bindParam(':libelle', $libelle);
+        $req->bindParam(':contenu', $contenu);
         // insertion d'une ligne
         $req->execute();
     }

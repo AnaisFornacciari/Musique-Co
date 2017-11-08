@@ -17,10 +17,10 @@
   ?>
   <h3 class="text-center"><b><?php echo  $nomDuMenu ?></b></h3>
   <br>
-  <div class="row">
+  <div class='row'>
     <?php foreach($LesContenus as $leContenu)
     {
-      $contenu = $app['couteauSuisse']->truncate($leContenu['leContenu'], 150, '...', true); //tronque le contenu "news" si ce dernier dépasse les 400 caractères
+      $contenu = $app['couteauSuisse']->truncate($leContenu['leContenu'], 250, '...', true); //tronque le contenu "news" si ce dernier dépasse les 180 caractères
       ?><div class="col-sm-3 item">
         <?php
         if($app['couteauSuisse']->estConnecte())
@@ -39,7 +39,7 @@
         <div>
           <p><?php echo $contenu ?></p>
         </div><?php 
-        if(strlen($leContenu['leContenu']) > 150) //si le contenu dépasse les 400 caractères : "Lire la suite..." + modal
+        if(strlen($leContenu['leContenu']) > 250) //si le contenu dépasse les 180 caractères : "Lire la suite..." + modal
         {
           ?> <div class="text-center"> <button class="btn" data-toggle="modal" data-target="#myModal-<?php echo $leContenu['id'] ?>">Lire la suite...</button> </div>
           <!-- Modal -->
@@ -74,7 +74,8 @@
             </div>
           </div>
           <?php
-        }?></div><?php
+        }?>
+      </div><?php
     }?>
   </div>
 </div>

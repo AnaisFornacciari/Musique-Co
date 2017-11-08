@@ -66,10 +66,10 @@
                 border-color: #f1f1f1;
             }
 
-            /* Image carousel */
+            /* image carousel */
             .carousel-inner img {
                 -webkit-filter: grayscale(90%);
-                filter: grayscale(90%); /* Mettre toutes les photos en noir et blanc */
+                filter: grayscale(90%); /* mettre toutes les photos en noir et blanc */ 
                 width: 100%; /* Définir la largeur à 100% */
                 margin: auto;
             }
@@ -363,7 +363,6 @@
             .glyphicon-menu-right {
                 margin-left: -17px;
                 margin-bottom : 30px;
-                color : #f4511e;
             }
 
             .table-add {
@@ -376,6 +375,14 @@
             &:hover {
                 color: #0b0;
             }
+            }
+
+            #photos{
+                width:70%;
+            }
+
+            #audios{
+                padding:0;
             }
         </style>
 
@@ -399,7 +406,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php
                     $classement = 1;
-                    foreach($LesMenus as $leMenu) //boucle pour afficher les menus stockées dans la BDD
+                    foreach($LesMenus as $leMenu) //boucle pour afficher les menus stockés dans la BDD
                     {
                         if($leMenu['archive'])
                         {

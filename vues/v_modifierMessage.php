@@ -1,58 +1,58 @@
 <!-- Container -->
 <script>
-  $(function(){
-    function initToolbarBootstrapBindings() {
-      $('a[title]').tooltip({container:'body'});
-    	$('.dropdown-menu input').click(function() {return false;})
-		    .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
-        .keydown('esc', function () {this.value='';$(this).change();});
+    $(function(){
+        function initToolbarBootstrapBindings() {
+            $('a[title]').tooltip({container:'body'});
+            $('.dropdown-menu input').click(function() {return false;})
+                .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
+                .keydown('esc', function () {this.value='';$(this).change();});
 
-      $('[data-role=magic-overlay]').each(function () { 
-        var overlay = $(this), target = $(overlay.data('target')); 
-        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-      });
-      if ("onwebkitspeechchange"  in document.createElement("input")) {
-        var editorOffset = $('#editor').offset();
-        $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
-      } else {
-        $('#voiceBtn').hide();
-      }
-	};
-	function showErrorAlert (reason, detail) {
-		var msg='';
-		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
-		else {
-			console.log("error uploading file", reason, detail);
-		}
-		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
-		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
-	};
-    initToolbarBootstrapBindings();  
-	$('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
-    window.prettyPrint && prettyPrint();
-  });
+            $('[data-role=magic-overlay]').each(function () {
+                var overlay = $(this), target = $(overlay.data('target'));
+                overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+            });
+            if ("onwebkitspeechchange"  in document.createElement("input")) {
+                var editorOffset = $('#editor').offset();
+                $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
+            } else {
+                $('#voiceBtn').hide();
+            }
+        };
+        function showErrorAlert (reason, detail) {
+            var msg='';
+            if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
+            else {
+                console.log("error uploading file", reason, detail);
+            }
+            $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+
+                '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
+        };
+        initToolbarBootstrapBindings();
+        $('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
+        window.prettyPrint && prettyPrint();
+    });
 </script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-37452180-6', 'github.io');
-  ga('send', 'pageview');
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37452180-6', 'github.io');
+    ga('send', 'pageview');
 </script>
 <script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "http://connect.facebook.net/en_GB/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
- </script>
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "http://connect.facebook.net/en_GB/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<script> 
+<script>
     function resultat(){
-        var contenu = document.getElementById("editor").value = document.getElementById("editor").innerHTML;
+        document.getElementById("newEditor").value = document.getElementById("editor").innerHTML;
     }
 </script>
 
@@ -61,9 +61,9 @@
     <br>
     <h3>Message</h3>
     <br>
-    <form action="validerModifMessage ?>" method="post">
+    <form action="validerModifMessage" method="post">
         <label for="titre">Titre :</label>
-            <br><p><em> <input class="form-control" type="text" value="<?php echo $message['titre'] ?>" name="titre" <?php echo $message['titre'] ?> maxlength="100"/> </em></p><br>
+        <br><p><em> <input class="form-control" type="text" value="<?php echo $message['titre'] ?>" name="titre" <?php echo $message['titre'] ?> maxlength="100"/> </em></p><br>
         <label for="contenu">Message :</label>
         <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
             <div class="btn-group">
@@ -111,8 +111,8 @@
             <?php echo $message['contenu'] ?>
         </div>
         <br>
-        <button type="submit" onclick="resultat();" class="btn btn-default pull-right" data-dismiss="modal">
-            <span class="glyphicon glyphicon-ok"></span> Valider
+        <button type="submit" id="newEditor" name="contenuHtml" value="" onclick="resultat();" class="btn btn-default pull-right" data-dismiss="modal">
+            <i class="glyphicon glyphicon-ok"></i> Valider
         </button>
     </form>
 </div>
